@@ -135,8 +135,7 @@ class Attendance(models.Model):
     tpd=models.IntegerField()
     per = models.IntegerField()
 
-
-    
+   
     @staticmethod
     def import_csv(filename):      
         tmp_data=pd.read_csv(filename,sep=',')    
