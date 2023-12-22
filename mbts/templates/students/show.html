@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+STUDENT Info
+<table>
+    <tr><td>PIN</td><td>{{s.pin}}</td></tr>
+    <tr><td>Name</td><td>{{s.sname}}</td></tr>
+    <tr><td>DOB</td><td>{{s.dob}}</td></tr>
+</table>
+
+<a href="{% url 'index' %}">Students</a>
+
+{% endblock %}

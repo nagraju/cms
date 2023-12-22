@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>Marks</h1>
+<a href="{% url 'newst' %}">New Student</a>
+{% if atte %}
+    <table>
+    {% for s in atte %}
+    <tr>
+        <td>{{s.pin}}</td>
+        <td>{{s.month}}</td>
+        <td>{{s.npd}}</td>
+        <td><a href="{% url 'show' s.pin %}">Show</a></td>
+        <td><a href="{% url 'edit' s.pin %}">Edit</a></td>
+
+        
+    </tr>
+    {% endfor %}
+    </table>
+
+{% else %}
+    <p>No Attendance are available.</p>
+{% endif %}
+
+{% endblock %}
