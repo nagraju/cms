@@ -1,6 +1,13 @@
 from django.db import models
 import pandas as pd
 
+
+class StudentClass(models.Model):
+    sem = models.IntegerField()
+    branch = models.CharField(max_length=10)
+    remarks = models.CharField(max_length=20)
+   
+
 class Students(models.Model):
     pin = models.CharField(max_length=20)
     sname=models.CharField(max_length=20)
@@ -14,6 +21,7 @@ class Students(models.Model):
     email=models.CharField(max_length=30)
     dob =  models.DateTimeField()
     gender=models.CharField(max_length=1)
+    studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
 
 
 
@@ -126,4 +134,5 @@ class Unit1marks(models.Model):
                 
             )
             a.save()
+
 
