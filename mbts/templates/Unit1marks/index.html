@@ -3,11 +3,11 @@
 
 {% block content %}
 
-<h1>Marks</h1>
+<h1>UNIT 1 MARKS</h1>
 <a href="{% url 'newst' %}">New Student</a>
 {% if atte %}
     <table>
-    {% for s in Marks %}
+    {% for s in Unit1marks %}
     <tr>
         <td>{{s.pin}}</td>
         <td>{{s.semister}}</td>
