@@ -4,14 +4,17 @@
 {% block content %}
 
 <h1>UNIT 1 MARKS</h1>
-<a href="{% url 'newst' %}">New Student</a>
-{% if atte %}
+{% if unit1marks %}
     <table>
-    {% for s in Unit1marks %}
+    {% for s in unit1marks %}
     <tr>
         <td>{{s.pin}}</td>
         <td>{{s.semister}}</td>
         <td>{{s.s1}}</td>
+        <td>{{s.s2}}</td>
+        <td>{{s.s3}}</td>
+        <td>{{s.s4}}</td>
+        <td>{{s.s5}}</td>
         <td><a href="{% url 'show' s.pin %}">Show</a></td>
         <td><a href="{% url 'edit' s.pin %}">Edit</a></td>
 

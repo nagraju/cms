@@ -24,7 +24,6 @@ def newst(request):
         return render(request, "students/show.html", context)
 
 def show(request, spin):
-    
     s = Students.objects.get(pin=spin)
     context = {"s" : s }
     return render(request, "students/show.html", context)

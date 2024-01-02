@@ -3,13 +3,13 @@
 
 {% block content %}
 
-STUDENT Info
+STUDENT MARKS DETAILS
 <table>
     <tr><td>PIN</td><td>{{s.pin}}</td></tr>
     <tr><td>Name</td><td>{{s.sname}}</td></tr>
-    <tr><td>DOB</td><td>{{s.dob}}</td></tr>
+    <tr><td>Semister</td><td>{{s.dob}}</td></tr>
 </table>
 
-<a href="{% url 'student_index' %}">student index</a>
+<a href="{% url 'student_index' %}">Marks</a>
 
 {% endblock %}

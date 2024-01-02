@@ -19,7 +19,12 @@ def upload(request):
         return render(request, "Unit1marks/upload_res.html", context)
 
 
+def show(request, spin):    
+    return render(request, "Unit1marks/show.html", context)
+            
+
+
 def index(request):
-    atte = Unit1marks.objects.all
-    context = {"Unit1marks": Unit1marks}
+    unit1marks = Unit1marks.objects.all
+    context = {"unit1marks": unit1marks}
     return render(request, "Unit1marks/index.html", context)

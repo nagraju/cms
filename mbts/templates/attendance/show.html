@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+STUDENT ATTENDANCE DETAILS
+<table>
+    <tr><td>PIN</td><td>{{s.pin}}</td></tr>
+    <tr><td>MONTH</td><td>{{s.month}}</td></tr>
+    <tr><td>NO.OF WORKING</td><td>{{s.nfw}}</td></tr>
+    
+</table>
+
+<a href="{% url 'index' %}">ATTENDANCE</a>
+
+{% endblock %}

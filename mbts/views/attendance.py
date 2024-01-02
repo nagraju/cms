@@ -25,6 +25,9 @@ def index(request):
     context = {"atte": atte}
     return render(request, "attendance/index.html", context)
 
+def show(request, spin):    
+    return render(request, "attendance/show.html", context)
+
 
 
 

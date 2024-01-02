@@ -2,14 +2,14 @@ from django.db import models
 import pandas as pd
 
 
-class StudentClass(models.Model):
+'''class StudentClass(models.Model):
     sem = models.IntegerField()
     branch = models.CharField(max_length=10)
-    remarks = models.CharField(max_length=20)
+    remarks = models.CharField(max_length=20)'''
    
 
 class Students(models.Model):
-    pin = models.CharField(max_length=20)
+    pin = models.CharField(max_length=20, primary_key=True)
     sname=models.CharField(max_length=20)
     fname=models.CharField(max_length=20)
     address=models.CharField(max_length=30)
@@ -21,13 +21,12 @@ class Students(models.Model):
     email=models.CharField(max_length=30)
     dob =  models.DateTimeField()
     gender=models.CharField(max_length=1)
-    studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
+    #studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
 
 
 
 class Marks(models.Model):
-    pin= models.CharField(max_length=20)
-    unit =models.IntegerField()
+    pin= models.CharField(max_length=20)    
     semister=models.CharField(max_length=20)
     s1=models.IntegerField() 
     s2=models.IntegerField() 
@@ -68,15 +67,15 @@ class Marks(models.Model):
             )
             a.save()
 
-class Attendance(models.Model):
-    student = models.ForeignKey(Students, on_delete=models.CASCADE)
-    pin=models.CharField(max_length=20)
+class Attendance(models.Model):    
+    pin = models.ForeignKey(Students, to_field="pin", db_column= 'pin', on_delete=models.CASCADE)
     month=models.CharField(max_length=20)
     nfw=models.IntegerField()
     npd=models.IntegerField()
     twd=models.IntegerField()
     tpd=models.IntegerField()
     per = models.IntegerField()
+    
 
    
     @staticmethod
@@ -84,14 +83,15 @@ class Attendance(models.Model):
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
+            s = Students.objects.get(pin=row['pin'])
             a = Attendance(
-                pin = row['pin'], 
+                pin = s, 
                 month = row['month'],
                 nfw = row['nfw'],
                 npd =  row['npd'],
                 twd =  row['twd'],
                 tpd =  row['tpd'],
-                per =  row['per'],
+                per =  row['per']                
             )
             a.save()
 

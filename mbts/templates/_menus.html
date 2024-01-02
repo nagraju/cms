@@ -1,0 +1,34 @@
+
+    <a href="/n/i/">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Students 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/n/n">New Student</a>
+        <a href="{% url 'student_index' %}">display</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div> 
+
+
+    <div class="dropdown">
+      <button class="dropbtn">Attendance
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="{% url 'atten_index'%}">Display</a>
+        <a href="{% url 'atte_upload' %}">Upload</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div> 
+    <div class="dropdown">
+        <button class="dropbtn">Unit Marks 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="{% url 'um1_index'%}">UNIT 1</a> 
+          <a href="{% url 'unit_upload'%}">upload</a> 
+
+        </div>
+      </div> 

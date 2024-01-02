@@ -20,7 +20,7 @@ def upload(request):
 
 
 def index(request):
-    atte = Marks.objects.all
+    Marks= Marks.objects.all
     context = {"Marks": Marks}
     return render(request, "Marks/index.html", context)
 
