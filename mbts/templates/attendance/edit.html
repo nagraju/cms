@@ -5,7 +5,19 @@
 
 <form method="POST">
 {% csrf_token %}
-{{fs}}
+
+{{ fs.management_form }}
+<table>
+{% for form in fs %}
+<tr>
+    <td>{{ form.id }}</td>
+    <td>{{form.instance.student.pin}}</td>
+    <td>{{ form.nfw }}</td>
+    <td>{{ form.npd }}</td>
+</tr>
+    
+{% endfor %}
+</table>
 <input type="submit" value="Update" />
 </form>
 

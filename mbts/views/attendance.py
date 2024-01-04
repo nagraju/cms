@@ -46,7 +46,7 @@ def edit(request,sem):
 
 
 def bulkedit(request,sem):
-    fs = modelformset_factory(Attendance, fields=["student","nfw","npd"])
+    fs = modelformset_factory(Attendance, fields=["nfw","npd"])
     context = {}     
     if(request.method == "GET"):                          
         context["fs"] = fs
