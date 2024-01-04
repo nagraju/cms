@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render
 
-from mbts.models import Attendance
+from mbts.models import Attendance, StudentClass
+from mbts.forms import ClassAttendance
 from django.core.files.storage import FileSystemStorage
+from django.forms import modelformset_factory
 
 
 def upload(request):
@@ -20,13 +22,43 @@ def upload(request):
         return render(request, "attendance/upload_res.html", context)
 
 
-def index(request):
-    atte = Attendance.objects.all
-    context = {"atte": atte}
+def index(request, sem='1'):
+    sem = request.GET.get("sem",1)    
+    
+    sc = StudentClass.objects.filter(sem=sem)
+    if(sc):
+        atte = sc[0].attendance_set.all
+        context = {"atte": atte}        
+    else:
+        context = {"atte": []}
+    context["sem"] = sem
     return render(request, "attendance/index.html", context)
 
 def show(request, spin):    
     return render(request, "attendance/show.html", context)
+
+def edit(request,sem):
+    context = {}
+    atte = Attendance.objects.all
+    fs = modelformset_factory(Attendance, fields=["pin", "nfw","npd"])
+    context["fs"] = fs
+    return render(request, "attendance/edit.html", context)
+
+
+def bulkedit(request,sem):
+    fs = modelformset_factory(Attendance, fields=["student","nfw","npd"])
+    context = {}     
+    if(request.method == "GET"):                          
+        context["fs"] = fs
+        return render(request, "attendance/edit.html", context)
+    else:
+        f = fs(request.POST)
+        f.save()
+        context["fs"] = fs
+        return render(request, "attendance/edit.html", context)
+
+
+
 
 
 

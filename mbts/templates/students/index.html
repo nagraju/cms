@@ -5,14 +5,16 @@
 
 <h1>Students</h1>
 <a href="{% url 'newst' %}">New Student</a>
+<a href="{% url 'student_upload' %}">Import Students</a>
 {% if sl %}
     <table>
     {% for s in sl %}
     <tr>
         <td>{{s.pin}}</td>
         <td>{{s.sname}}</td>
-        <td><a href="{% url 'Student_show' s.pin %}">Show</a></td>
-        <td><a href="{% url 'edit' s.pin %}">Edit</a></td>
+        <td><a href="{% url 'student_show' s.pin %}">Show</a></td>
+        <td><a href="{% url 'student_edit' s.pin %}">Edit</a></td>
+        <td><a href="{% url 'student_delete' s.pin %}">Delete</a></td>
 
         
     </tr>

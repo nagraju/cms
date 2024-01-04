@@ -7,6 +7,9 @@ import pandas as pd
     branch = models.CharField(max_length=10)
     remarks = models.CharField(max_length=20)'''
    
+class StudentClass(models.Model):
+    sem = models.CharField(max_length=10, primary_key=True)
+    remarks = models.CharField(max_length=20)
 
 class Students(models.Model):
     pin = models.CharField(max_length=20, primary_key=True)
@@ -19,10 +22,20 @@ class Students(models.Model):
     phno=models.CharField(max_length=12)
     fphno=models.CharField(max_length=12)
     email=models.CharField(max_length=30)
-    dob =  models.DateTimeField()
+    dob =  models.DateTimeField(default='2020-1-1')
     gender=models.CharField(max_length=1)
     #studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
-
+    
+    @staticmethod
+    def import_csv(filename):      
+        tmp_data=pd.read_csv(filename,sep=',')    
+        row_iter = tmp_data.iterrows()    
+        for i,row in row_iter:
+            a = Students(
+                pin = row['PIN'], 
+                sname=row['NAME'],  
+            )
+            a.save()
 
 
 class Marks(models.Model):
@@ -67,14 +80,15 @@ class Marks(models.Model):
             )
             a.save()
 
-class Attendance(models.Model):    
-    pin = models.ForeignKey(Students, to_field="pin", db_column= 'pin', on_delete=models.CASCADE)
+class Attendance(models.Model):        
+    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE)
     month=models.CharField(max_length=20)
     nfw=models.IntegerField()
     npd=models.IntegerField()
     twd=models.IntegerField()
     tpd=models.IntegerField()
     per = models.IntegerField()
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE)
     
 
    
@@ -83,15 +97,16 @@ class Attendance(models.Model):
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
-            s = Students.objects.get(pin=row['pin'])
+            s = Students.objects.get(pin=row['PIN'])
             a = Attendance(
-                pin = s, 
-                month = row['month'],
-                nfw = row['nfw'],
-                npd =  row['npd'],
-                twd =  row['twd'],
-                tpd =  row['tpd'],
-                per =  row['per']                
+                student = s, 
+                month = row['MONTH'],
+                nfw = row['NFW'],
+                npd =  row['NPD'],  
+                twd = 0,
+                tpd = 0,
+                per = 0,
+                studentclass_id = '4SEM',                          
             )
             a.save()
 
