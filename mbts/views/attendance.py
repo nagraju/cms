@@ -24,15 +24,15 @@ def upload(request):
 
 def index(request, sem='1'):
     context = {}
-    sem = request.GET.get("sem",1)    
-    sf = SearchForm(request.GET,instance=StudentClass())
+    sem = request.GET.get("sem",1)        
     sc = StudentClass.objects.filter(sem=sem)
-    context["sf"] = sf
+    sf = SearchForm(request.GET,instance=StudentClass())    
+    context["sform"] = sf
     if(sc):
         atte = sc[0].attendance_set.all
-        context = {"atte": atte}        
+        context["atte"] = atte
     else:
-        context = {"atte": []}
+        context["atte"] = []
     context["sem"] = sem
     return render(request, "attendance/index.html", context)
 
