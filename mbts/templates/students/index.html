@@ -3,6 +3,11 @@
 
 {% block content %}
 
+<from>
+    {% csrf_token %}
+    {{search}}
+</from>
+
 <h1>Students</h1>
 <a href="{% url 'newst' %}">New Student</a>
 <a href="{% url 'student_upload' %}">Import Students</a>

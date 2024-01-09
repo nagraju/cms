@@ -13,6 +13,12 @@
     <input type="submit" />    
 </form>
 
+<form method="get">
+    {{sf.sem}}
+    <input type="submit" />    
+</form>
+
+
 <h1>{{sem}} Attendance</h1>
     {% if atte %}
     <a href="{% url 'atten_bulkedit' sem %}"> Edit All</a>
