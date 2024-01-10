@@ -33,7 +33,18 @@ class Students(models.Model):
         for i,row in row_iter:
             a = Students(
                 pin = row['PIN'], 
-                sname=row['NAME'],  
+                sname=row['NAME'],
+                fname=row['FNAME'],
+                address=row['ADDRESS'],
+                village=row['VILLAGE'],
+                mandal=row['MANDAL'],
+                dist=row['DIST'],
+                phno=row['PHNO'],
+                fphno=row['FPHNO'],
+                email=row['EMAIL'],
+                dob=row['DOB'],
+                gender=row['GENDER'],
+
             )
             a.save()
 
@@ -111,8 +122,7 @@ class Attendance(models.Model):
             a.save()
 
 class Unit1marks(models.Model):
-    pin= models.CharField(max_length=20)
-    semister=models.CharField(max_length=20)
+    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
     s1=models.IntegerField() 
     s2=models.IntegerField() 
     s3=models.IntegerField() 
@@ -124,28 +134,30 @@ class Unit1marks(models.Model):
     s9=models.IntegerField() 
     s10=models.IntegerField() 
     s11=models.IntegerField() 
-    s12=models.IntegerField() 
+    s12=models.IntegerField()
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
 
     @staticmethod
     def import_csv(filename):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
+            s = Students.objects.get(pin=row['PIN'])
             a = Unit1marks(
-                pin = row['pin'], 
-                semister=row['semister'],
+                student=s,
                 s1 =row['s1'],
                 s2=row['s2'], 
                 s3=row['s3'],
                 s4=row['s4'],
                 s5=row['s5'],
                 s6=row['s6'],
-                s7=row['s7'],
-                s8=row['s8'],
-                s9=row['s9'], 
-                s10=row['s10'],
-                s11=row['s11'],
-                s12=row['s12'],
+                s7=0,
+                s8=0,
+                s9=0, 
+                s10=0,
+                s11=0,
+                s12=0,
+                studentclass_id = '4SEM', 
                 
             )
             a.save()

@@ -21,11 +21,15 @@ path("a/<str:pin>/edit", attendance.edit, name="atten_edit"),
 path("a/<str:sem>/bulkedit", attendance.bulkedit, name="atten_bulkedit"),
 
 
-path("<str:spin>/show", attendance.show, name="atten_show"),
+path("<str:student>/show", attendance.show, name="atten_show"),
 
 
 path("m/", marks.index, name="Marks1_index"),
 path("u1m/", Unit1marks.index, name="um1_index"),
+path("a/<str:sem>",Unit1marks.index, name="u1m_index"),
+path("a/<str:pin>/edit", Unit1marks.edit, name="u1m_edit"),
+path("a/<str:sem>/bulkedit", Unit1marks.bulkedit, name="u1m_bulkedit"),
+
 path("<str:spin>/um", Unit1marks.show, name="show"),
 path("m/upload", marks.upload, name="upload"),
 path("u1m/upload", Unit1marks.upload, name="unit_upload"),

@@ -5,7 +5,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <a href="/n/n">New Student</a>
+        <a href="{% url 'newst' %}">New Student</a>
         <a href="{% url 'student_index' %}">display</a>
         <a href="#">Link 3</a>
       </div>
@@ -29,6 +29,7 @@
         <div class="dropdown-content">
           <a href="{% url 'um1_index'%}">UNIT 1</a> 
           <a href="{% url 'unit_upload'%}">upload</a> 
+          
 
         </div>
       </div> 
