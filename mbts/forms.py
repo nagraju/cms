@@ -44,7 +44,13 @@ class Unit1marksForm(ModelForm):
         fields = ("s1","s2")
 
         
+    
 
-
-        
-
+class SearchForm(ModelForm):
+    class Meta:
+        model = StudentClass
+        #SEMS = (("1YESR","1ST YEAR"),("3SEM","3 SEM"),("4SEM","4 SEM"),("5SEM","5 SEM"),("6SEM", "6 SEM"))
+        fields = ['sem',]
+        widgets = {
+            'sem': forms.Select(choices=StudentClass.SEMS, attrs={'class': 'form-control'}),
+        }

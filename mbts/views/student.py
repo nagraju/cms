@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render
-from mbts.forms import StudentForm
+from mbts.forms import StudentForm, SearchForm
 from mbts.models import Students
 from django.core.files.storage import FileSystemStorage
 
@@ -23,12 +23,14 @@ def upload(request):
 def index(request):
     sl = Students.objects.all
     context = {"sl": sl}
+    context["search"] = SearchForm()
     return render(request, "students/index.html", context)
 
 
 # Create your views here.
 def newst(request):
     context = {}
+ 
     if(request.method == "GET"):       
         context['forms'] = StudentForm()
         return render(request, "students/newst.html", context)

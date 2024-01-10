@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 from mbts.models import Attendance, StudentClass
-from mbts.forms import ClassAttendance
+from mbts.forms import ClassAttendance, SearchForm
 from django.core.files.storage import FileSystemStorage
 from django.forms import modelformset_factory
 
@@ -23,9 +23,11 @@ def upload(request):
 
 
 def index(request, sem='1'):
+    context = {}
     sem = request.GET.get("sem",1)    
-    
+    sf = SearchForm(request.GET,instance=StudentClass())
     sc = StudentClass.objects.filter(sem=sem)
+    context["sf"] = sf
     if(sc):
         atte = sc[0].attendance_set.all
         context = {"atte": atte}        

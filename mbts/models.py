@@ -6,9 +6,13 @@ import pandas as pd
     sem = models.IntegerField()
     branch = models.CharField(max_length=10)
     remarks = models.CharField(max_length=20)'''
-   
+
+
 class StudentClass(models.Model):
-    sem = models.CharField(max_length=10, primary_key=True)
+    SEMS = {"1YEAR":"1 YEAR","3SEM":"3 SEM","4SEM":"4 SEM","5SEM":"5 SEM","6SEM":"6 SEM"}    
+    #begining_date = models.DateTimeField()
+    #ending_date = models.DateTimeField()
+    sem = models.CharField(max_length=10, primary_key=True, choices=SEMS)
     remarks = models.CharField(max_length=20)
 
 class Students(models.Model):
