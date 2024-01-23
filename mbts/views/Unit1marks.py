@@ -20,6 +20,22 @@ def upload(request):
             Unit1marks.import_csv(uploaded_file_url)
         return render(request, "Unit1marks/upload_res.html", context)
 
+        
+def index(request, sem='1'):
+    sem = request.GET.get("sem",1)    
+    sc = StudentClass.objects.filter(sem=sem)
+    if(sc):
+         u1m= sc[0].Unit1marks_set.all
+         context = {"u1m": u1m}        
+    else:
+        context = {"u1m": []}
+    context["sem"] = sem
+    return render(request, "Unit1marks/index.html", context)
+
+
+
+
+
 
 def show(request, student):
     s = Unit1marks.objects.get(student=student)
@@ -49,13 +65,3 @@ def bulkedit(request,sem):
             
 
 
-def index(request, sem='1'):
-    sem = request.GET.get("sem",1)    
-    sc = StudentClass.objects.filter(sem=sem)
-    if(sc):
-         u1m= sc[0].Unit1marks_set.all
-         context = {"u1m": u1m}        
-    else:
-        context = {"u1m": []}
-    context["sem"] = sem
-    return render(request, "Unit1marks/index.html", context)

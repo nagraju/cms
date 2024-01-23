@@ -44,7 +44,7 @@ def show(request, student):
 def edit(request,sem):
     context = {}
     atte = Attendance.objects.all
-    fs = modelformset_factory(Attendance, fields=["pin", "nfw","npd","twd","tpd","per"])
+    fs = modelformset_factory(Attendance, fields=["student", "nfw","npd","twd","tpd","per"])
     context["fs"] = fs
     return render(request, "attendance/edit.html", context)
 

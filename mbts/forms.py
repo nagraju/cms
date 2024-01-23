@@ -17,7 +17,10 @@ class InputForm(forms.Form):
 class StudentForm(ModelForm):
     class Meta:
         model = Students
-        fields = ["pin","sname","dob","fname","address","village","mandal","dist","phno","email","gender"]
+        fields = ["pin","sname","dob","fname","address","village","mandal","dist","phno","email","gender","student_image"] 
+        widgets = {
+            'student_image': forms.FileInput(attrs={'class': 'form-control'}),
+        }      
 
 class ClassAttendance(ModelForm):
     attendance = forms.ModelChoiceField(Attendance.objects.all())
