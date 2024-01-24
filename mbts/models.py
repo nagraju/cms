@@ -28,7 +28,7 @@ class Students(models.Model):
     email=models.CharField(max_length=30)
     dob =  models.DateTimeField(default='2020-1-1')
     gender=models.CharField(max_length=1)
-    student_image = models.ImageField(
+    studentimage = models.ImageField(
         ("Title Image"), 
         upload_to='static/Images/student_image/',
          max_length=None,

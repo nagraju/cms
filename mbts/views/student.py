@@ -18,8 +18,6 @@ def upload(request):
             Students.import_csv(uploaded_file_url)
         return render(request, "attendance/upload_res.html", context)
 
-
-
 def index(request):
     sl = Students.objects.all
     context = {"sl": sl}
@@ -35,12 +33,13 @@ def newst(request):
         context['forms'] = StudentForm()
         return render(request, "students/newst.html", context)
     else:
-        sf = StudentForm(request.POST)
+        sf = StudentForm(request.POST, request.FILES)
         sf.is_valid()     
         s = sf.save()
         context['s'] = s
         return render(request, "students/show.html", context)
 
+  
 def show(request, spin):
     s = Students.objects.get(pin=spin)
     context = {"s" : s }
@@ -56,7 +55,7 @@ def edit(request, spin):
         context['forms'] = sf
         return render(request, "students/edit.html",context)
     else:
-        sf = StudentForm(request.POST, instance=s )
+        sf = StudentForm(request.POST, request.FILES, instance=s )
         sf.is_valid()     
         s = sf.save()
         context['s'] = s
@@ -66,3 +65,11 @@ def delete(request, spin):
     s = Students.objects.get(pk = spin)
     s.delete()
     return render(request, "students/delete.html")
+
+def report(request, spin):
+    #projects = Project.objects.select_related('leader').all()
+    s = Students.objects.get(pin=spin)
+    a= s.attendance_set.all()
+    context = {"s" : s }
+    context["a"]=a
+    return render(request, "students/report.html", context,context)   

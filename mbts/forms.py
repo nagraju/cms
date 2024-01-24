@@ -17,7 +17,7 @@ class InputForm(forms.Form):
 class StudentForm(ModelForm):
     class Meta:
         model = Students
-        fields = ["pin","sname","dob","fname","address","village","mandal","dist","phno","email","gender","student_image"] 
+        fields = ["pin","sname","dob","fname","address","village","mandal","dist","phno","email","gender","studentimage"] 
         widgets = {
             'student_image': forms.FileInput(attrs={'class': 'form-control'}),
         }      

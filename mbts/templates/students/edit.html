@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>EDIT STUDENT INFO</h1>
-<form action = "" method = "post">
+<form action = "" method = "post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ forms }} 
     <input type="submit" value="Submit"/>

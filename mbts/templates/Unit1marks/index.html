@@ -15,7 +15,7 @@
 
 <h1>{{sem}} UNIT MARKS</h1>
     {% if u1m %}
-    <a href="{% url 'unit_bulkedit' sem %}"> Edit All</a>
+    <a href="{% url 'u1m_bulkedit' sem %}"> Edit All</a>
     
     <table>
     {% for s in u1m %}
@@ -25,8 +25,8 @@
         <td>{{s.s1}}</td>
         <td>{{s.s2}}</td>
         <td>{{s.s3}}</td>
-        <td><a href="{% url 'atten_show' s.student_id %}">Show</a></td>
-        <td><a href="{% url 'atten_edit' s.student_id %}">Edit</a></td>
+        <td><a href="{% url 'u1m_show' s.student_id %}">Show</a></td>
+        <td><a href="{% url 'u1m_edit' s.student_id %}">Edit</a></td>
 
         
     </tr>
