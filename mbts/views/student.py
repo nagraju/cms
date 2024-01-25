@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render
 from mbts.forms import StudentForm, SearchForm
-from mbts.models import Students
+from mbts.models import Students,Attendance
 from django.core.files.storage import FileSystemStorage
 
 def upload(request):
@@ -69,7 +69,7 @@ def delete(request, spin):
 def report(request, spin):
     #projects = Project.objects.select_related('leader').all()
     s = Students.objects.get(pin=spin)
-    a= s.attendance_set.all()
+    a= s.Attendance_set.all()
     context = {"s" : s }
     context["a"]=a
-    return render(request, "students/report.html", context,context)   
+    return render(request, "students/report.html",context)  
