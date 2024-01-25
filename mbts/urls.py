@@ -13,7 +13,8 @@ path("i/<str:spin>/show", student.show, name="student_show"),
 path("i/<str:spin>/edit", student.edit, name="student_edit"),
 path("i/<str:spin>/delete", student.delete, name="student_delete"),
 path("i/new", student.newst, name="newst"),
-path("i/<str:spin>/report", student.report, name="student_report"),
+path("i/report", student.report, name="student_report"),
+
 
 
 

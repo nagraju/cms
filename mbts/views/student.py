@@ -66,10 +66,15 @@ def delete(request, spin):
     s.delete()
     return render(request, "students/delete.html")
 
-def report(request, spin):
+def report(request):
     #projects = Project.objects.select_related('leader').all()
-    s = Students.objects.get(pin=spin)
-    a= s.Attendance_set.all()
-    context = {"s" : s }
-    context["a"]=a
+    spin = request.GET.get("spin","")
+    context = {}
+    if(spin!=""):        
+        s = Students.objects.get(pin=spin)
+        a= s.attendance_set.all()        
+        context["s"] = s 
+        context["spin"] = spin
+        context["a"] = a
     return render(request, "students/report.html",context)  
+    

@@ -2,5 +2,20 @@
 
 
 {% block content %}
-<h1>report</h1>
+
+<form>
+    <input type="text" name="spin" value="{{spin}}" />
+    <input type="submit" value="Report"/>
+</form>
+
+{% if s %}
+<h1>report {{s.pin}}</h1>
+{{s.sname}}
+{% for t in a %}
+{{t.month}}
+{{t.nfw}}
+{{t.npd}}
+<br/>
+{% endfor %}
+{% endif  %}
 {% endblock %}
