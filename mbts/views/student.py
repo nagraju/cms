@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render
 from mbts.forms import StudentForm, SearchForm
-from mbts.models import Students,Attendance
+from mbts.models import Students,Attendance,Unit1marks
 from django.core.files.storage import FileSystemStorage
 
 def upload(request):
@@ -72,9 +72,14 @@ def report(request):
     context = {}
     if(spin!=""):        
         s = Students.objects.get(pin=spin)
-        a= s.attendance_set.all()        
+        a= s.attendance_set.all() 
+        u1m=s.unit1marks_set.all()       
         context["s"] = s 
         context["spin"] = spin
         context["a"] = a
+        context["spin"] = spin
+        context["u1m"] = u1m
+        context["spin"] = spin
+
     return render(request, "students/report.html",context)  
     

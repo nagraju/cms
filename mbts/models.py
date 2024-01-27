@@ -171,4 +171,87 @@ class Unit1marks(models.Model):
             )
             a.save()
 
+class Unit2marks(models.Model):
+    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    s1=models.IntegerField() 
+    s2=models.IntegerField() 
+    s3=models.IntegerField() 
+    s4=models.IntegerField() 
+    s5=models.IntegerField() 
+    s6=models.IntegerField() 
+    s7=models.IntegerField() 
+    s8=models.IntegerField() 
+    s9=models.IntegerField() 
+    s10=models.IntegerField() 
+    s11=models.IntegerField() 
+    s12=models.IntegerField()
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
+    @staticmethod
+    def import_csv(filename):      
+        tmp_data=pd.read_csv(filename,sep=',')    
+        row_iter = tmp_data.iterrows()    
+        for i,row in row_iter:
+            s = Students.objects.get(pin=row['PIN'])
+            a = Unit2marks(
+                student=s,
+                s1 =row['s1'],
+                s2=row['s2'], 
+                s3=row['s3'],
+                s4=row['s4'],
+                s5=row['s5'],
+                s6=row['s6'],
+                s7=0,
+                s8=0,
+                s9=0, 
+                s10=0,
+                s11=0,
+                s12=0,
+                studentclass_id = '4SEM', 
+                
+            )
+            a.save()
+
+class Unit3marks(models.Model):
+    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    s1=models.IntegerField() 
+    s2=models.IntegerField() 
+    s3=models.IntegerField() 
+    s4=models.IntegerField() 
+    s5=models.IntegerField() 
+    s6=models.IntegerField() 
+    s7=models.IntegerField() 
+    s8=models.IntegerField() 
+    s9=models.IntegerField() 
+    s10=models.IntegerField() 
+    s11=models.IntegerField() 
+    s12=models.IntegerField()
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
+    @staticmethod
+    def import_csv(filename):      
+        tmp_data=pd.read_csv(filename,sep=',')    
+        row_iter = tmp_data.iterrows()    
+        for i,row in row_iter:
+            s = Students.objects.get(pin=row['PIN'])
+            a = Unit3marks(
+                student=s,
+                s1 =row['s1'],
+                s2=row['s2'], 
+                s3=row['s3'],
+                s4=row['s4'],
+                s5=row['s5'],
+                s6=row['s6'],
+                s7=0,
+                s8=0,
+                s9=0, 
+                s10=0,
+                s11=0,
+                s12=0,
+                studentclass_id = '4SEM', 
+                
+            )
+            a.save()            
+
+
+
+
 
