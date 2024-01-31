@@ -13,20 +13,20 @@
     <input type="submit" />    
 </form>
 
-<h1>{{sem}} UNIT MARKS 2</h1>
-    {% if u2m %}
+<h1>{{sem}} UNIT MARKS 3</h1>
+    {% if um3 %}
     <a href="{% url 'u2m_bulkedit' sem %}"> Edit All</a>
     
     <table>
-    {% for s in u2m %}
+    {% for s in um3 %}
     <tr>
         <td>{{s.student_id}}</td>
         <td>{{s.student.name}}</td>
         <td>{{s.s1}}</td>
         <td>{{s.s2}}</td>
         <td>{{s.s3}}</td>
-        <td><a href="{% url 'u1m_show' s.student_id %}">Show</a></td>
-        <td><a href="{% url 'u1m_edit' s.student_id %}">Edit</a></td>
+        <td><a href="{% url 'u3m_show' s.student_id %}">Show</a></td>
+        <td><a href="{% url 'u3m_edit' s.student_id %}">Edit</a></td>
 
         
     </tr>

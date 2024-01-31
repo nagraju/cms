@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Students, Attendance, StudentClass
-from .models import Students, Unit1marks, StudentClass,Unit2marks
+from .models import Students, Unit1marks, StudentClass,Unit2marks,Unit3marks
 
 
  
@@ -56,6 +56,17 @@ class Unit2marksForm(ModelForm):
     class Meta:
         model = Unit2marks
         fields = ("s1","s2")
+
+class ClassUnit3marks(ModelForm):
+    Unit3marks= forms.ModelChoiceField(Unit3marks.objects.all())
+    class Meta:
+        model = StudentClass
+        fields = ("sem", "Unit3marks")
+
+class Unit3marksForm(ModelForm):
+    class Meta:
+        model = Unit3marks
+        fields = ("s1","s2")        
 
 
 

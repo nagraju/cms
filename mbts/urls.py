@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import student
 from .views import attendance
 from .views import marks
-from .views import Unit1marks,Unit2marks
+from .views import Unit1marks,Unit2marks,Unit3marks
 
 urlpatterns = [
 path("i/", student.index, name="student_index"),
@@ -41,4 +41,11 @@ path("a/<str:pin>/edit", Unit2marks.edit, name="u2m_edit"),
 path("a/<str:sem>/bulkedit", Unit2marks.bulkedit, name="u2m_bulkedit"),
 path("<str:spin>/um", Unit2marks.show, name="u2m_show"),
 path("u2m/upload", Unit2marks.upload, name="u2m_upload"),
+
+path("u3m/", Unit3marks.index, name="um3_index"),
+path("a/<str:sem>",Unit3marks.index, name="um3_index"),
+path("a/<str:pin>/edit", Unit3marks.edit, name="um3_edit"),
+path("a/<str:sem>/bulkedit", Unit3marks.bulkedit, name="um3_bulkedit"),
+path("<str:spin>/um", Unit3marks.show, name="um3_show"),
+path("u3m/upload", Unit3marks.upload, name="um3_upload"),
 ]

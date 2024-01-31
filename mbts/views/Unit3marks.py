@@ -25,7 +25,7 @@ def index(request, sem='1'):
     sem = request.GET.get("sem",1)    
     sc = StudentClass.objects.filter(sem=sem)
     if(sc):
-         u2m= sc[0].unit3marks_set.all
+         u3m= sc[0].unit3marks_set.all
          context = {"u3m": u3m}        
     else:
         context = {"u3m": []}
@@ -45,7 +45,7 @@ def show(request, spin):
 def edit(request,sem):
     context = {}
     u2m= Unit3marks.objects.all
-    fs = modelformset_factory(Unit2marks, fields=["pin", "s1","s2"])
+    fs = modelformset_factory(Unit3marks, fields=["pin", "s1","s2"])
     context["fs"] = fs
     return render(request, "Unit3marks/edit.html", context)  
 
