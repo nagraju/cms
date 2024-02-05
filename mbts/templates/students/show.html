@@ -7,16 +7,39 @@ STUDENT Info
 <table>
     <tr><td>PIN</td><td>{{s.pin}}</td></tr>
     <tr><td>Name</td><td>{{s.sname}}</td></tr>
-    <tr><td>DOB</td><td>{{s.dob}}</td></tr>
     <tr><td>FATHERNAME</td><td>{{s.fname}}</td></tr>
+    <tr><td>MOTHERNAME</td><td>{{s.mname}}</td></tr>
+    <tr><td>PHNO</td><td>{{s.phno}}</td></tr>
+    <tr><td>FPHNO</td><td>{{s.fphno}}</td></tr>
+    <tr><td>DOB</td><td>{{s.dob}}</td></tr>
+    <tr><td>GENDER</td><td>{{s.gender}}</td></tr>
+    <tr><td>CATEGORY</td><td>{{s.category}}</td></tr>
+    <tr><td>SCATEGORY</td><td>{{s.scategory}}</td></tr>
+    <tr><td>RELIGION</td><td>{{s.religion}}</td></tr>
+    <tr><td>SACNUMBER</td><td>{{s.sacno}}</td></tr>
+    <tr><td>SIFSC</td><td>{{s.sifsc}}</td></tr>
+    <tr><td>MACNO</td><td>{{s.macno}}</td></tr>
+    <tr><td>MIFSC</td><td>{{s.mifsc}}</td></tr>
+    <tr><td>MBRANCH</td><td>{{s.mbranch}}</td></tr>
+    <tr><td>EMAIL</td><td>{{s.email}}</td></tr>
+    <tr><td>SSCRANK</td><td>{{s.sscrank}}</td></tr>
+    <tr><td>SSCHALLTICKETNO</td><td>{{s.ssachallticketno}}</td></tr>
     <tr><td>ADDRESS</td><td>{{s.address}}</td></tr>
     <tr><td>VILLAGE</td><td>{{s.village}}</td></tr>
     <tr><td>MANDAL</td><td>{{s.mandal}}</td></tr>
-    <tr><td>DISTRICT</td><td>{{s.dist}}</td></tr>
-    <tr><td>PHONENUMBER</td><td>{{s.phno}}</td></tr>
-    <tr><td>FATHERNUMBER</td><td>{{s.fphno}}</td></tr>
-    <tr><td>EMAILID</td><td>{{s.email}}</td></tr>
-    <tr><td>GENDER</td><td>{{s.gender}}</td></tr>
+    <tr><td>DIST</td><td>{{s.dist}}</td></tr>
+    <tr><td>ALLOTTEDCATEGORY</td><td>{{s.allottedcategory}}</td></tr>
+    <tr><td>DATEOFJOINING</td><td>{{s.dateofjoining}}</td></tr>
+    <tr><td>POLYCETRANK</td><td>{{s.polycetrank}}</td></tr>
+    <tr><td>POLYCETNO</td><td>{{s.polycetno}}</td></tr>
+    <tr><td>AADHARNNO</td><td>{{s.aadharno}}</td></tr>
+    <tr><td>RATIONNO</td><td>{{s.rationno}}</td></tr>
+    <tr><td>TCNO</td><td>{{s.tcno}}</td></tr>
+    <tr><td>TCISSUEDDATE</td><td>{{s.tcissudedate}}</td></tr>
+    <tr><td>DISCONTIUNEDDATE</td><td>{{s.discontinueddate}}</td></tr>
+    <tr><td>ODNO</td><td>{{s.gender}}</td></tr>
+    <tr><td>ODISSUEDDATE</td><td>{{s.gender}}</td></tr>
+    <tr><td>STUDYCERTIFICATEISSUEDDATE</td><td>{{s.gender}}</td></tr>
     {% if s.studentimage.url is not None %}
     <tr><td>studentImage</td><td><img src="{{s.studentimage.url}}" alt="photo" width="100" height="100"></td></tr>
     {% endif %}
@@ -25,6 +48,7 @@ STUDENT Info
     <tr><td></td>studentImage<td>{{s.studentimage}}</td></tr>
 
     {% endif %}
+    
    
     
    

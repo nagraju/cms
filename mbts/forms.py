@@ -17,7 +17,7 @@ class InputForm(forms.Form):
 class StudentForm(ModelForm):
     class Meta:
         model = Students
-        fields = ["pin","sname","dob","fname","address","village","mandal","dist","phno","email","gender","studentimage"] 
+        fields = ["pin","sname","fname","mname","phno","fphno","dob","gender","category","scategory","religion","sacno","sbranch","macno","mifsc","mbranch","email","sscrank","sschallticketno","address","village","mandal","dist","allotedcategory","dateofjoining","polycetrank","polycetno","aadharno","rationno","tcno","tcissudedate","discontinueddate","odno","odissueddate","studycertificateissudedate"]	 
         widgets = {
             'student_image': forms.FileInput(attrs={'class': 'form-control'}),
         }      

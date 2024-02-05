@@ -8,7 +8,7 @@ def upload(request):
     context = {}
     if(request.method == "GET"):       
         
-        return render(request, "attendance/upload.html", context)
+        return render(request, "students/upload.html", context)
     else:
         if request.method == 'POST' and request.FILES['csvfile']:
             myfile = request.FILES['csvfile']
@@ -16,7 +16,7 @@ def upload(request):
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
             Students.import_csv(uploaded_file_url)
-        return render(request, "attendance/upload_res.html", context)
+        return render(request, "students/upload_res.html", context)
 
 def index(request):
     sl = Students.objects.all
