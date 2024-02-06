@@ -20,38 +20,38 @@ class Students(models.Model):
     sname=models.CharField(max_length=20,default='student')
     fname=models.CharField(max_length=20,default='father')
     mname=models.CharField(max_length=20,default='mother')
-    phno=models.IntegerField(default='123456')
-    fphno=models.IntegerField(default='123445654')
-    dob=models.DateTimeField(default='2020-1-1')
-    gender=models.CharField(max_length=1,default='2020-1-1')
+    phno=models.CharField(max_length=12, default='123456')
+    fphno=models.CharField(max_length=12, default='123445654')
+    dob=models.DateTimeField(blank=True, null=True)
+    gender=models.CharField(max_length=1,default='M')
     category=models.CharField(max_length=5,default='category')
     scategory=models.CharField(max_length=10,default='subcategory')
     religion=models.CharField(max_length=20,default='religion')
-    sacno=models.IntegerField(default='1111')
+    sacno=models.CharField(max_length=20, default='1111')
     sifsc=models.CharField(max_length=20,default='1234')
-    sbranch=models.CharField(max_length=20,default='student branch')
-    macno=models.IntegerField(default='1234')
+    sbranch=models.CharField(max_length=20,default='CME')
+    macno=models.CharField(max_length=22, default='1234')
     mifsc=models.CharField(max_length=20,default='ifsc')
     mbranch=models.CharField(max_length=20,default='motherac')
     email=models.CharField(max_length=30,default='@gmail.com')
-    sscrank=models.IntegerField(default='1234')
-    sschallticketno=models.IntegerField(default='123456')
+    sscrank=models.IntegerField(default=1234)
+    sschallticketno=models.CharField(max_length=20, default='123456')
     address=models.CharField(max_length=30,default='address')
     village=models.CharField(max_length=20,default='village')
     mandal=models.CharField(max_length=20,default='mandal')
     dist=models.CharField(max_length=20,default='district')
     allotedcategory=models.CharField(max_length=20,default='general')
-    dateofjoining=models.DateTimeField(default='2020-1-1')
-    polycetrank=models.IntegerField(default='1234')
-    polycetno=models.IntegerField(default='1234')
-    aadharno=models.IntegerField(default='111111111111')
+    dateofjoining=models.DateTimeField(blank=True, null=True)
+    polycetrank=models.IntegerField(default=1234)
+    polycetno=models.IntegerField(default=1234)
+    aadharno=models.CharField(max_length=22, default='111111111111')
     rationno=models.CharField(max_length=20,default='1234')
     tcno=models.IntegerField(default='1234')
-    tcissudedate=models.DateTimeField(default='2020-1-1')
-    discontinueddate=models.DateTimeField(default='2020-1-1')
+    discontinueddate=models.DateTimeField(blank=True, null=True)
     odno=models.IntegerField(default='1234')
-    odissueddate=models.DateTimeField(default='2020-1-1')
-    studycertificateissudedate=models.DateTimeField(default='2020-1-1')
+    odissueddate=models.DateTimeField(blank=True, null=True)
+    tcissueddate=models.DateTimeField(blank=True, null=True)
+    studycertificateissueddate=models.DateTimeField(blank=True, null=True)
     studentimage = models.ImageField(
         ("Title Image"), 
         upload_to='static/Images/student_image/',
@@ -71,7 +71,7 @@ class Students(models.Model):
                 mname=row['MNAME'],
                 phno=row['PHNO'],
                 fphno=row['FPHONE'],
-                dob=row['DOB'],
+                #dob=row['DOB'],
                 gender=row['GENDER'],
                 category=row['CATEGORY'],
                 scategory=row['SCATEGORY'],
@@ -83,24 +83,24 @@ class Students(models.Model):
                 mifsc=row['MIFSC'],
                 mbranch=row['MBRNACH'],
                 email=row['EMAIL'],
-                sscrank=row['SSCRANK'],
+                #sscrank=row['SSCRANK'],
                 sschallticketno=row['SSCHALLTICKETNO'],
                 address=row['ADDRESS'],
                 village=row['VILLAGE'],
                 mandal=row['MANDAL'],
                 dist=row['DIST'],
                 allotedcategory=row['ALLOTEDCATEGORY'],
-                dateofjoining=row['DATEOFJOINING'],
-                polycetrank=row['POLYCETRANK'],
-                polycetno=row['POLYCETNO'],
+                #dateofjoining=row['DATEOFJOINING'],
+                #polycetrank=row['POLYCETRANK'],
+                #polycetno=row['POLYCETNO'],
                 aadharno=row['AADHARNO'],
                 rationno=row['RATIONNO'],
-                tcno=row['TCNO'],
-                tcissueddate=row['TCISSUEDDATE'],
-                discontinueddate=row['DISCOUNTINUEDDATE'],
-                odno=row['ODNO'],
-                odissueddate=row['ODISSUEDDATE'],
-                studycertificateissueddate=row['STUDYCERTIFICATEISSUEDDATE'],
+                #tcno=row['TCNO'],
+                #tcissueddate=row['TCISSUEDDATE'],
+                #discontinueddate=row['DISCOUNTINUEDDATE'],
+                #odno=row['ODNO'],
+                #odissueddate=row['ODISSUEDDATE'],
+                #studycertificateissueddate=row['STUDYCERTIFICATEISSUEDDATE'],
     
                
     
