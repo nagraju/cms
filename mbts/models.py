@@ -47,7 +47,7 @@ class Students(models.Model):
     aadharno=models.IntegerField(default='111111111111')
     rationno=models.CharField(max_length=20,default='1234')
     tcno=models.IntegerField(default='1234')
-    tcissudedate=models.DateTimeField(default='2020-1-1')
+    tcissueddate=models.DateTimeField(default='2020-1-1')
     discontinueddate=models.DateTimeField(default='2020-1-1')
     odno=models.IntegerField(default='1234')
     odissueddate=models.DateTimeField(default='2020-1-1')
@@ -70,7 +70,7 @@ class Students(models.Model):
                 fname=row['FNAME'],
                 mname=row['MNAME'],
                 phno=row['PHNO'],
-                fphno=row['FPHONE'],
+                fphno=row['FPHNO'],
                 dob=row['DOB'],
                 gender=row['GENDER'],
                 category=row['CATEGORY'],
@@ -81,7 +81,7 @@ class Students(models.Model):
                 sbranch=row['SBRANCH'],
                 macno=row['MACNO'],
                 mifsc=row['MIFSC'],
-                mbranch=row['MBRNACH'],
+                mbranch=row['MBRANCH'],
                 email=row['EMAIL'],
                 sscrank=row['SSCRANK'],
                 sschallticketno=row['SSCHALLTICKETNO'],
@@ -109,65 +109,65 @@ class Marks(models.Model):
     studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
     pin= models.CharField(max_length=20)    
     s1=models.IntegerField() 
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail')
+    s1i=models.IntegerField() 
+    s1e=models.IntegerField() 
+    s1t=models.IntegerField() 
+    s1s=models.CharField(max_length=30,default='pass or fail')
     s2=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail')
+    s2i=models.IntegerField() 
+    s2e=models.IntegerField() 
+    s2t=models.IntegerField() 
+    s2s=models.CharField(max_length=30,default='pass or fail')
     s3=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail')
+    s3i=models.IntegerField() 
+    s3e=models.IntegerField() 
+    s3t=models.IntegerField() 
+    s3s=models.CharField(max_length=30,default='pass or fail')
     s4=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s4i=models.IntegerField() 
+    s4e=models.IntegerField() 
+    s4t=models.IntegerField() 
+    s4s=models.CharField(max_length=30,default='pass or fail') 
     s5=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s5i=models.IntegerField() 
+    s5e=models.IntegerField() 
+    s5t=models.IntegerField() 
+    s5s=models.CharField(max_length=30,default='pass or fail') 
     s6=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s6i=models.IntegerField() 
+    s6e=models.IntegerField() 
+    s6t=models.IntegerField() 
+    s6s=models.CharField(max_length=30,default='pass or fail') 
     s7=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s7i=models.IntegerField() 
+    s7e=models.IntegerField() 
+    s7t=models.IntegerField() 
+    s7s=models.CharField(max_length=30,default='pass or fail') 
     s8=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s8i=models.IntegerField() 
+    s8e=models.IntegerField() 
+    s8t=models.IntegerField() 
+    s8s=models.CharField(max_length=30,default='pass or fail') 
     s9=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s9i=models.IntegerField() 
+    s9e=models.IntegerField() 
+    s9t=models.IntegerField() 
+    s9s=models.CharField(max_length=30,default='pass or fail') 
     s10=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail') 
+    s10i=models.IntegerField() 
+    s10e=models.IntegerField() 
+    s10t=models.IntegerField() 
+    s10s=models.CharField(max_length=30,default='pass or fail') 
     s11=models.IntegerField() 
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail')
+    s11i=models.IntegerField() 
+    s11e=models.IntegerField() 
+    s11t=models.IntegerField() 
+    s11s=models.CharField(max_length=30,default='pass or fail')
     s12=models.IntegerField()
-    internal=models.IntegerField() 
-    external=models.IntegerField() 
-    total=models.IntegerField() 
-    passorfail=models.CharField(max_length=30,default='pass or fail')
+    s12i=models.IntegerField() 
+    s12e=models.IntegerField() 
+    s12t=models.IntegerField() 
+    s12s=models.CharField(max_length=30,default='pass or fail')
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING')
 
 
@@ -182,20 +182,70 @@ class Marks(models.Model):
 
                 semister=row['semister'],
                 s1 =row['s1'],
-                s2=row['s2'], 
-                s3=row['s3'],
-                s4=row['s4'],
-                s5=row['s5'],
-                s6=row['s6'],
+                s1i=row['s1i'],
+                s1e=row['s1e'],
+                s1t=row['s1t'],
+                s1s=row['s1s'],
+                s2 =row['s2'],
+                s2i=row['s2i'],
+                s2e=row['s2e'],
+                s2t=row['s2t'],
+                s2s=row['s2s'],
+                s3 =row['s3'],
+                s3i=row['s3i'],
+                s3e=row['s3e'],
+                s3t=row['s3t'],
+                s3s=row['s3s'],
+                s4 =row['s4'],
+                s4i=row['s4i'],
+                s4e=row['s4e'],
+                s4t=row['s4t'],
+                s4s=row['s4s'],
+                s5 =row['s5'],
+                s5i=row['s5i'],
+                s5e=row['s5e'],
+                s5t=row['s5t'],
+                s5s=row['s5s'],
+                s6 =row['s6'],
+                s6i=row['s6i'],
+                s6e=row['s6e'],
+                s6t=row['s6t'],
+                s6s=row['s6s'],
                 s7=row['s7'],
+                s7i=row['s7i'],
+                s7e=row['s7e'],
+                s7t=row['s7t'],
+                s7s=row['s7s'],
                 s8=row['s8'],
-                s9=row['s9'], 
+                s8i=row['s8i'],
+                s8e=row['s8e'],
+                s8t=row['s8t'],
+                s8s=row['s8s'],
+                s9=row['s9s'],
+                s9i=row['s9i'],
+                s9e=row['s9e'],
+                s9t=row['s9t'],
+                s9s=row['s9s'],
                 s10=row['s10'],
+                s10i=row['s10i'],
+                s10e=row['s10e'],
+                s10t=row['s10t'],
+                s10s=row['s10s'],
                 s11=row['s11'],
+                s11i=row['s11i'],
+                s11e=row['s11e'],
+                s11t=row['s11t'],
+                s11s=row['s11s'],
                 s12=row['s12'],
+                s12i=row['s12i'],
+                s12e=row['s12e'],
+                s12t=row['s12t'],
+                s12s=row['s12s'],
+                    
                 
             )
             a.save()
+    
 
 class Attendance(models.Model):        
     studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE)

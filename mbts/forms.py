@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Students, Attendance, StudentClass
+from .models import Students, Attendance, StudentClass,Marks
 from .models import Students, Unit1marks, StudentClass,Unit2marks,Unit3marks
 
 
@@ -17,7 +17,7 @@ class InputForm(forms.Form):
 class StudentForm(ModelForm):
     class Meta:
         model = Students
-        fields = ["pin","sname","fname","mname","phno","fphno","dob","gender","category","scategory","religion","sacno","sbranch","macno","mifsc","mbranch","email","sscrank","sschallticketno","address","village","mandal","dist","allotedcategory","dateofjoining","polycetrank","polycetno","aadharno","rationno","tcno","tcissudedate","discontinueddate","odno","odissueddate","studycertificateissudedate"]	 
+        fields = ["pin","sname","fname","mname","phno","fphno","dob","gender","category","scategory","religion","sacno","sbranch","macno","mifsc","mbranch","email","sscrank","sschallticketno","address","village","mandal","dist","allotedcategory","dateofjoining","polycetrank","polycetno","aadharno","rationno","tcno","tcissueddate","discontinueddate","odno","odissueddate","studycertificateissudedate"]	 
         widgets = {
             'student_image': forms.FileInput(attrs={'class': 'form-control'}),
         }      
@@ -66,7 +66,20 @@ class ClassUnit3marks(ModelForm):
 class Unit3marksForm(ModelForm):
     class Meta:
         model = Unit3marks
-        fields = ("s1","s2")        
+        fields = ("s1","s2")    
+
+class ClassMarks(ModelForm):
+    Marks= forms.ModelChoiceField(Marks.objects.all())
+    class Meta:
+        model = StudentClass
+        fields = ("sem", "Marks")
+
+class MarksForm(ModelForm):
+    class Meta:
+        model = Marks
+        fields = ("s1","s2")            
+
+
 
 
 

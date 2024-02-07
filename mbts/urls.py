@@ -26,8 +26,16 @@ path("a/<str:sem>/bulkedit", attendance.bulkedit, name="atten_bulkedit"),
 path("<str:student>/show", attendance.show, name="atten_show"),
 
 path("m/upload", marks.upload, name="upload"),
+path("m/", marks.index, name="Marks_index"),
+path("a/<str:sem>",marks.index, name="m_index"),
+path("a/<str:pin>/edit", marks.edit, name="m_edit"),
+path("a/<str:sem>/bulkedit", marks.bulkedit, name="m_bulkedit"),
+path("<str:spin>/m", marks.show, name="m_show"),
+path("m/upload", marks.upload, name="m_upload"),
 
-path("m/", marks.index, name="Marks1_index"),
+
+
+
 path("u1m/", Unit1marks.index, name="um1_index"),
 path("a/<str:sem>",Unit1marks.index, name="u1m_index"),
 path("a/<str:pin>/edit", Unit1marks.edit, name="u1m_edit"),
