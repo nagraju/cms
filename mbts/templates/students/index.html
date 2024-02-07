@@ -4,8 +4,8 @@
 {% block content %}
 
 <h1>Students</h1>
-<a href="{% url 'newst' %}">New Student</a>
-<a href="{% url 'student_upload' %}">Import Students</a>
+<a class="btn btn-primary btn-neutral" href="{% url 'newst' %}">New Student</a>
+<a class="btn btn-primary btn-neutral" href="{% url 'student_upload' %}">Import Students</a>
 {% if sl %}
     <table class="table">
     {% for s in sl %}
