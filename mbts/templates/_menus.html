@@ -1,45 +1,60 @@
 
-    <a href="/n/i/">Home</a>
-    <div class="dropdown">
-      <button class="dropbtn">Students 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="{% url 'newst' %}">New Student</a>
-        <a href="{% url 'student_index' %}">display</a>
-       <a href="{% url 'student_report' %}">Report</a>
-      </div>
-    </div> 
-
-
-    <div class="dropdown">
-      <button class="dropbtn">Attendance
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="{% url 'atten_index'%}">Display</a>
-        <a href="{% url 'atte_upload' %}">Upload</a>
-        <a href="#">Link 3</a>
-      </div>
-    </div> 
-
-
+<div class="container">
     
-    <div class="dropdown">
-      <button class="dropbtn">Unit Marks
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-          <div class="dropdown-content">
+    <a class="navbar-brand" href="/n/i/">MBTS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
 
-        <a href="{% url 'um1_index'%}">UNIT 1 marks</a> 
-        <a href="{% url 'u1m_upload'%}">upload</a>
-        <a href="{% url 'um2_index'%}">UNIT 2 marks</a> 
-        <a href="{% url 'u2m_upload'%}">upload</a>
-        <a href="{% url 'um3_index'%}">UNIT 3 marks</a> 
-        <a href="{% url 'um3_upload'%}">upload</a>
 
-       </div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Students
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'newst' %}">New Student</a>
+              <a class="dropdown-item" href="{% url 'student_index' %}">display</a>
+              <a class="dropdown-item" href="{% url 'student_report' %}">Report</a>              
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Attendance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'atten_index'%}">Display</a>
+              <a class="dropdown-item" href="{% url 'atte_upload' %}">Upload</a>
+              <a class="dropdown-item" href="#">Link 3</a>       
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Unit Marks
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'um1_index'%}">UNIT 1 marks</a> 
+              <a class="dropdown-item" href="{% url 'u1m_upload'%}">upload</a>
+              <a class="dropdown-item" href="{% url 'um2_index'%}">UNIT 2 marks</a> 
+              <a class="dropdown-item" href="{% url 'u2m_upload'%}">upload</a>
+              <a class="dropdown-item" href="{% url 'um3_index'%}">UNIT 3 marks</a> 
+              <a class="dropdown-item" href="{% url 'um3_upload'%}">upload</a> 
+            </div>
+          </li>
+
+
+        </ul>
+
+
       </div>
-    </div>
-  
+
+</div>
+
+
+

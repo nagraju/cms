@@ -7,18 +7,22 @@
 <a href="{% url 'newst' %}">New Student</a>
 <a href="{% url 'student_upload' %}">Import Students</a>
 {% if sl %}
-    <table>
+    <table class="table">
     {% for s in sl %}
+    <tbody>
     <tr>
-        <td>{{s.pin}}</td>
+        <td class="text-center">{{s.pin}}</td>
         <td>{{s.sname}}</td>
-        <td><a href="{% url 'student_show' s.pin %}">Show</a></td>
-        <td><a href="{% url 'student_edit' s.pin %}">Edit</a></td>
-        <td><a href="{% url 'student_delete' s.pin %}">Delete</a></td>
+        <td><a href="{% url 'student_show' s.pin %}"> <i class="tim-icons icon-single-02"></i>  Show</a></td>  
+        <td><a href="{% url 'student_edit' s.pin %}"><i class="tim-icons icon-pencil"></i>  Edit</a></td>
+        
+        <td><a href="{% url 'student_delete' s.pin %}"><i class="tim-icons icon-trash-simple"></i>  Delete</a></td>
 
         
     </tr>
+
     {% endfor %}
+    </tbody>
     </table>
 
 {% else %}
