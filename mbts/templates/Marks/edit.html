@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<form method="POST">
+{% csrf_token %}
+
+{{ fs.management_form }}
+<table>
+{% for form in fs %}
+<tr>
+    <td>{{ form.id }}</td>
+    <td>{{form.instance.student.pin}}</td>
+    <td>{{ form.s1 }}</td>
+    <td>{{ form.s2 }}</td>
+</tr>
+    
+{% endfor %}
+</table>
+<input type="submit" value="Update" />
+</form>
+
+{% endblock %}

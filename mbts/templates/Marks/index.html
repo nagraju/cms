@@ -3,17 +3,30 @@
 
 {% block content %}
 
-<h1>Marks</h1>
-<a href="{% url 'newst' %}">New Student</a>
-{% if atte %}
+<form method="get">
+    <select name="sem">
+        <option value="1YEAR">1 Year</option>
+        <option value="3SEM">3 Sem</option>
+        <option value="4SEM">4 Sem</option>
+        <option value="5SEM">5 Sem</option>
+    </select>
+    <input type="submit" />    
+</form>
+
+<h1>{{sem}} SEMISTER MARKS</h1>
+    {% if m %}
+    <a href="{% url 'm_bulkedit' sem %}"> Edit All</a>
+    
     <table>
-    {% for s in Marks %}
+    {% for s in m %}
     <tr>
-        <td>{{s.pin}}</td>
-        <td>{{s.semister}}</td>
+        <td>{{s.student_id}}</td>
+        <td>{{s.student.name}}</td>
         <td>{{s.s1}}</td>
-        <td><a href="{% url 'show' s.pin %}">Show</a></td>
-        <td><a href="{% url 'edit' s.pin %}">Edit</a></td>
+        <td>{{s.s2}}</td>
+        <td>{{s.s3}}</td>
+        <td><a href="{% url 'm_show' s.student_id %}">Show</a></td>
+        <td><a href="{% url 'm_edit' s.student_id %}">Edit</a></td>
 
         
     </tr>
@@ -21,7 +34,7 @@
     </table>
 
 {% else %}
-    <p>No Marks are available.</p>
+    <p>No unit marks are available.</p>
 {% endif %}
 
 {% endblock %}
