@@ -19,8 +19,15 @@ class StudentForm(ModelForm):
         model = Students
         fields = ["pin","sname","fname","mname","phno","fphno","dob","gender","category","scategory","religion","sacno","sbranch","macno","mifsc","mbranch","email","sscrank","sschallticketno","address","village","mandal","dist","allotedcategory","dateofjoining","polycetrank","polycetno","aadharno","rationno","tcno","tcissueddate","discontinueddate","odno","odissueddate","studycertificateissueddate"]	 
         widgets = {
-            'student_image': forms.FileInput(attrs={'class': 'form-control'}),
+            'student_image': forms.FileInput(attrs={'class': 'form-control'}),                     
         }      
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': 'Enter ' + field
+            })
 
 class ClassAttendance(ModelForm):
     attendance = forms.ModelChoiceField(Attendance.objects.all())
