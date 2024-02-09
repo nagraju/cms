@@ -3,7 +3,7 @@ from django.shortcuts import render
 from mbts.models import Marks
 from django.core.files.storage import FileSystemStorage
 from mbts.models import Marks,StudentClass
-from mbts.forms import ClassMarks
+#from mbts.forms import ClassMarks
 from django.forms import modelformset_factory
 
 
