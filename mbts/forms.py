@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Students, Attendance, StudentClass
+from .models import Students, Unit1marks, StudentClass,Unit2marks,Unit3marks
+
 
  
 # creating a form 
@@ -15,7 +17,10 @@ class InputForm(forms.Form):
 class StudentForm(ModelForm):
     class Meta:
         model = Students
-        fields = ["pin","sname","dob"]
+        fields = ["pin","sname","fname","mname","phno","fphno","dob","gender","category","scategory","religion","sacno","sbranch","macno","mifsc","mbranch","email","sscrank","sschallticketno","address","village","mandal","dist","allotedcategory","dateofjoining","polycetrank","polycetno","aadharno","rationno","tcno","tcissueddate","discontinueddate","odno","odissueddate","studycertificateissueddate"]	 
+        widgets = {
+            'student_image': forms.FileInput(attrs={'class': 'form-control'}),
+        }      
 
 class ClassAttendance(ModelForm):
     attendance = forms.ModelChoiceField(Attendance.objects.all())
@@ -28,6 +33,47 @@ class AttendanceForm(ModelForm):
         model = Attendance
         fields = ("nfw","npd")
 
+#unit marks form
+
+class ClassUnit1marks(ModelForm):
+    Unit1marks= forms.ModelChoiceField(Unit1marks.objects.all())
+    class Meta:
+        model = StudentClass
+        fields = ("sem", "Unit1marks")
+
+class Unit1marksForm(ModelForm):
+    class Meta:
+        model = Unit1marks
+        fields = ("s1","s2")
+
+class ClassUnit2marks(ModelForm):
+    Unit2marks= forms.ModelChoiceField(Unit2marks.objects.all())
+    class Meta:
+        model = StudentClass
+        fields = ("sem", "Unit2marks")
+
+class Unit2marksForm(ModelForm):
+    class Meta:
+        model = Unit2marks
+        fields = ("s1","s2")
+
+class ClassUnit3marks(ModelForm):
+    Unit3marks= forms.ModelChoiceField(Unit3marks.objects.all())
+    class Meta:
+        model = StudentClass
+        fields = ("sem", "Unit3marks")
+
+class Unit3marksForm(ModelForm):
+    class Meta:
+        model = Unit3marks
+        fields = ("s1","s2")        
+
+
+
+
+
+        
+    
 
 class SearchForm(ModelForm):
     class Meta:

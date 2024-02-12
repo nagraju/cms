@@ -19,7 +19,7 @@ def upload(request):
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
             Attendance.import_csv(uploaded_file_url)
-        return render(request, "attendance/upload_res.html", context)
+        return render(request,"attendance/upload_res.html", context)
 
 
 def index(request, sem='1'):
@@ -36,13 +36,15 @@ def index(request, sem='1'):
     context["sem"] = sem
     return render(request, "attendance/index.html", context)
 
-def show(request, spin):    
+def show(request, student):
+    s = Attendance.objects.get(student=student)
+    context = {"s" : s }
     return render(request, "attendance/show.html", context)
 
 def edit(request,sem):
     context = {}
     atte = Attendance.objects.all
-    fs = modelformset_factory(Attendance, fields=["pin", "nfw","npd"])
+    fs = modelformset_factory(Attendance, fields=["student", "nfw","npd","twd","tpd","per"])
     context["fs"] = fs
     return render(request, "attendance/edit.html", context)
 
@@ -59,7 +61,7 @@ def bulkedit(request,sem):
         context["fs"] = fs
         return render(request, "attendance/edit.html", context)
 
-
+        
 
 
 

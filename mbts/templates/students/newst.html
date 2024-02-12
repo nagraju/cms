@@ -4,10 +4,15 @@
 {% block content %}
 
 <h1>STUDENT INFO</h1>
-<form action = "" method = "post">
+<form action = "" method = "post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ forms }} 
+    {{ forms }}
+    {{ forms.media }} 
+    
+
     <input type="submit" value="Submit"/>
 </form>
 
 {% endblock %}
+
+

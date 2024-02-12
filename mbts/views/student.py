@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from mbts.forms import StudentForm, SearchForm, StudentProfileForm
 from mbts.models import Students, User
+from mbts.models import Students,Attendance,Unit1marks
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 
@@ -9,18 +10,17 @@ def upload(request):
     context = {}
     if(request.method == "GET"):       
         
-        return render(request, "attendance/upload.html", context)
+        return render(request, "students/upload.html", context)
     else:
         if request.method == 'POST' and request.FILES['csvfile']:
             myfile = request.FILES['csvfile']
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
-            Students.import_csv(uploaded_file_url)
-        return render(request, "attendance/upload_res.html", context)
+            Students.import_csv(uploaded_file_url)        
+            return render(request, "students/upload_res.html", context)
 
-
-@login_required
+@login_required  
 def index(request):
     sl = Students.objects.all
     context = {"sl": sl}
@@ -57,12 +57,13 @@ def newst(request):
         context['forms'] = StudentForm()
         return render(request, "students/newst.html", context)
     else:
-        sf = StudentForm(request.POST)
+        sf = StudentForm(request.POST, request.FILES)
         sf.is_valid()     
         s = sf.save()
         context['s'] = s
         return render(request, "students/show.html", context)
 
+  
 def show(request, spin):
     s = Students.objects.get(pin=spin)
     context = {"s" : s }
@@ -78,7 +79,7 @@ def edit(request, spin):
         context['forms'] = sf
         return render(request, "students/edit.html",context)
     else:
-        sf = StudentForm(request.POST, instance=s )
+        sf = StudentForm(request.POST, request.FILES, instance=s )
         sf.is_valid()     
         s = sf.save()
         context['s'] = s
@@ -89,3 +90,21 @@ def delete(request, spin):
     s = Students.objects.get(pk = spin)
     s.delete()
     return render(request, "students/delete.html")
+
+def report(request):
+    #projects = Project.objects.select_related('leader').all()
+    spin = request.GET.get("spin","")
+    context = {}
+    if(spin!=""):        
+        s = Students.objects.get(pin=spin)
+        a= s.attendance_set.all() 
+        u1m=s.unit1marks_set.all()       
+        context["s"] = s 
+        context["spin"] = spin
+        context["a"] = a
+        context["spin"] = spin
+        context["u1m"] = u1m
+        context["spin"] = spin
+
+    return render(request, "students/report.html",context)  
+    

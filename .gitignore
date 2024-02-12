@@ -1,3 +1,7 @@
 mbts\__pycache__
 project\__pycache__
 /assets/*
+mbts/__pycache__
+project/__pycache__
+mbts/__pycache__/*
+project/__pycache__/*
