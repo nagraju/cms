@@ -7,8 +7,9 @@
 {% csrf_token %}
 
 {{ fs.management_form }}
-<table>
+<table class="table">
 {% for form in fs %}
+<tbody>
 <tr>
     <td>{{ form.id }}</td>
     <td>{{form.instance.student.pin}}</td>
@@ -17,8 +18,9 @@
 </tr>
     
 {% endfor %}
+</tbody>
 </table>
-<input type="submit" value="Update" />
+<input class="btn btn-primary btn-neutral"  type="submit" value="Update" />
 </form>
 
 {% endblock %}
