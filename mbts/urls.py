@@ -12,6 +12,7 @@ path("i/<str:spin>/show", student.show, name="student_show"),
 path("i/<str:spin>/edit", student.show, name="student_edit"),
 path("i/<str:spin>/delete", student.delete, name="student_delete"),
 path("i/new", student.newst, name="newst"),
+path('profile/', student.profile, name='users-profile'),
 
 
 path("a/upload", attendance.upload, name="atte_upload"),

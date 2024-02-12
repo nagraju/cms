@@ -1,0 +1,15 @@
+<h1>Profile</h1>
+
+{% extends "base.html" %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+       {{s.pin}}<br/>
+       {{s.sname}}<br/>
+       {{s.dob}}<br/>
+        {{spf}}
+        <input type="submit" value="Update"/>
+    </form>
+
+   
+{% endblock content %}

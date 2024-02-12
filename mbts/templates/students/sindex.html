@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>Students</h1>
+{% if sl %}
+    <table>
+    {% for s in sl %}
+    {% if s.pin == cu.pin %}
+        <tr style="border:1px solid red">
+    {% else %}
+        <tr>
+    {% endif %}
+        <td>{{s.pin}}</td>
+        <td>{{s.sname}}</td>
+        <td><a href="{% url 'student_show' s.pin %}">Show</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% else %}
+    <p>No students are available.</p>
+{% endif %}
+
+{% endblock %}

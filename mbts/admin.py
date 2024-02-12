@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Students, Attendance, Unit1marks
 
-# Register your models here.
+admin.site.register(Students)
+class StudentsAdmin(admin.ModelAdmin):
+    pass

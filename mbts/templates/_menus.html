@@ -32,3 +32,13 @@
 
         </div>
       </div> 
+      {% if user.is_authenticated %}
+     <span style="color:white">User: {{ user.get_username }}</span>
+     <a href="{% url 'users-profile' %}">Profile</a>
+     <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit">logout</button>
+  </form>    
+   {% else %}
+     <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+   {% endif %}

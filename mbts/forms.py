@@ -37,3 +37,8 @@ class SearchForm(ModelForm):
         widgets = {
             'sem': forms.Select(choices=StudentClass.SEMS, attrs={'class': 'form-control'}),
         }
+
+class StudentProfileForm(ModelForm):
+    class Meta:
+        model = Students
+        fields = ["fname","address","village","mandal","dist","email",]

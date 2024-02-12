@@ -1,6 +1,6 @@
 from django.db import models
 import pandas as pd
-
+from django.contrib.auth.models import AbstractUser
 
 '''class StudentClass(models.Model):
     sem = models.IntegerField()
@@ -8,12 +8,25 @@ import pandas as pd
     remarks = models.CharField(max_length=20)'''
 
 
+
+class User(AbstractUser): 
+    TEACHER = 1
+    STUDENT = 2  
+    ROLE_CHOICES = ((TEACHER, 'Teacher'), (STUDENT, 'Student'),)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=STUDENT)
+
+    
+  
+
 class StudentClass(models.Model):
     SEMS = {"1YEAR":"1 YEAR","3SEM":"3 SEM","4SEM":"4 SEM","5SEM":"5 SEM","6SEM":"6 SEM"}    
-    #begining_date = models.DateTimeField()
-    #ending_date = models.DateTimeField()
+    begining_date = models.DateTimeField(blank=True, null=True)
+    branch = models.CharField(max_length=5, default="CME")
+    ending_date = models.DateTimeField(blank=True, null=True)
     sem = models.CharField(max_length=10, primary_key=True, choices=SEMS)
     remarks = models.CharField(max_length=20)
+
+
 
 class Students(models.Model):
     pin = models.CharField(max_length=20, primary_key=True)
@@ -28,7 +41,7 @@ class Students(models.Model):
     email=models.CharField(max_length=30)
     dob =  models.DateTimeField(default='2020-1-1')
     gender=models.CharField(max_length=1)
-    #studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
     
     @staticmethod
     def import_csv(filename):      
