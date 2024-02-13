@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from mbts.forms import StudentForm, SearchForm, StudentProfileForm
 from mbts.models import Students, User
 from mbts.models import Students,Attendance,Unit1marks
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
+from mbts.resources import StudentsResource
+import tablib 
 
 def upload(request):
     context = {}
@@ -13,11 +14,16 @@ def upload(request):
         return render(request, "students/upload.html", context)
     else:
         if request.method == 'POST' and request.FILES['csvfile']:
-            myfile = request.FILES['csvfile']
+            myfile = request.FILES['csvfile']            
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
-            Students.import_csv(uploaded_file_url)        
+            with open(uploaded_file_url, 'r') as fh:
+                imported_data = tablib.Dataset().load(fh)            
+            sr = StudentsResource()                        
+            result = sr.import_data(imported_data, dry_run=False) 
+            context["result"] = result
+            context["t"] = result.has_errors()
             return render(request, "students/upload_res.html", context)
 
 @login_required  

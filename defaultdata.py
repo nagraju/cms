@@ -12,6 +12,10 @@ s.save()
 
 
 from mbts.models import User, Students
+u = User(username="suviswas")
+
+u.set_password("asd@123")
+
 
 superuser
 admin

@@ -5,6 +5,7 @@ from mbts.models import Attendance, StudentClass
 from mbts.forms import ClassAttendance, SearchForm
 from django.core.files.storage import FileSystemStorage
 from django.forms import modelformset_factory
+from django.db.models import Sum
 
 
 def upload(request):
@@ -28,13 +29,28 @@ def index(request, sem='1'):
     sc = StudentClass.objects.filter(sem=sem)
     sf = SearchForm(request.GET,instance=StudentClass())    
     context["sform"] = sf
-    if(sc):
-        atte = sc[0].attendance_set.all
+    if(sc):        
+        atte = (Attendance.objects.filter(studentclass_id=sc[0].sem).select_related("student").values("student_id","student__sname").annotate(tp = Sum("npd"),tw = Sum("nfw")).order_by())
         context["atte"] = atte
     else:
         context["atte"] = []
     context["sem"] = sem
     return render(request, "attendance/index.html", context)
+
+def monthly(request, sem='1'):
+    context = {}
+    sem = request.GET.get("sem",1)        
+    sc = StudentClass.objects.filter(sem=sem)
+    sf = SearchForm(request.GET,instance=StudentClass())    
+    context["sform"] = sf
+    if(sc):        
+        atte = Attendance.objects.filter(studentclass_id=sc[0].sem).prefetch_related("student").all
+        context["atte"] = atte
+    else:
+        context["atte"] = []
+    context["sem"] = sem
+    return render(request, "attendance/monthly.html", context)
+
 
 def show(request, student):
     s = Attendance.objects.get(student=student)

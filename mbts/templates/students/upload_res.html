@@ -3,4 +3,13 @@
 
 {% block content %}
 <h1>Uploaded</h1>
+{{t}}---
+{%for r in result%}
+    {%for i,e in result.row_errors%}
+        {%for x in e%}
+            {{x.error}}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+
 {% endblock %}

@@ -30,38 +30,38 @@ class StudentClass(models.Model):
 
 class Students(models.Model):
     pin = models.CharField(max_length=20, primary_key=True)
-    sname=models.CharField(max_length=20,default='student')
-    fname=models.CharField(max_length=20,default='father')
-    mname=models.CharField(max_length=20,default='mother')
-    phno=models.CharField(max_length=12, default='123456')
-    fphno=models.CharField(max_length=12, default='123445654')
+    sname=models.CharField(max_length=20, default='student')
+    fname=models.CharField(max_length=20, default='father')
+    mname=models.CharField(max_length=20, default='mother')
+    phno=models.CharField(max_length=12, null = True)
+    fphno=models.CharField(max_length=12, null=True)
     dob=models.DateTimeField(blank=True, null=True)
     gender=models.CharField(max_length=1,default='M')
-    category=models.CharField(max_length=5,default='category')
-    scategory=models.CharField(max_length=10,default='subcategory')
-    religion=models.CharField(max_length=20,default='religion')
-    sacno=models.CharField(max_length=20, default='1111')
-    sifsc=models.CharField(max_length=20,default='1234')
-    sbranch=models.CharField(max_length=20,default='CME')
-    macno=models.CharField(max_length=22, default='1234')
-    mifsc=models.CharField(max_length=20,default='ifsc')
-    mbranch=models.CharField(max_length=20,default='motherac')
-    email=models.CharField(max_length=30,default='@gmail.com')
+    category=models.CharField(max_length=5,null=True)
+    scategory=models.CharField(max_length=10,null=True)
+    religion=models.CharField(max_length=20,null=True)
+    sacno=models.CharField(max_length=20, null=True)
+    sifsc=models.CharField(max_length=20,null=True)
+    sbranch=models.CharField(max_length=20,null=True)
+    macno=models.CharField(max_length=22, null=True)
+    mifsc=models.CharField(max_length=20,null=True)
+    mbranch=models.CharField(max_length=20,null=True)
+    email=models.CharField(max_length=30,null=True)
     sscrank=models.IntegerField(default=1234)
-    sschallticketno=models.CharField(max_length=20, default='123456')
-    address=models.CharField(max_length=30,default='address')
-    village=models.CharField(max_length=20,default='village')
-    mandal=models.CharField(max_length=20,default='mandal')
-    dist=models.CharField(max_length=20,default='district')
-    allotedcategory=models.CharField(max_length=20,default='general')
+    sschallticketno=models.CharField(max_length=20, null=True)
+    address=models.CharField(max_length=30, null=True)
+    village=models.CharField(max_length=20, null=True)
+    mandal=models.CharField(max_length=20, null=True)
+    dist=models.CharField(max_length=20, null=True)
+    allotedcategory=models.CharField(max_length=20, null=True)
     dateofjoining=models.DateTimeField(blank=True, null=True)
-    polycetrank=models.IntegerField(default=1234)
-    polycetno=models.IntegerField(default=1234)
-    aadharno=models.CharField(max_length=22, default='111111111111')
-    rationno=models.CharField(max_length=20,default='1234')
-    tcno=models.IntegerField(default='1234')
+    polycetrank=models.IntegerField(null=True)
+    polycetno=models.IntegerField(null=True)
+    aadharno=models.CharField(max_length=22, null=True)
+    rationno=models.CharField(max_length=20,null=True)
+    tcno=models.IntegerField(null=True)
     discontinueddate=models.DateTimeField(blank=True, null=True)
-    odno=models.IntegerField(default='1234')
+    odno=models.IntegerField(null=True)
     odissueddate=models.DateTimeField(blank=True, null=True)
     tcissueddate=models.DateTimeField(blank=True, null=True)
     studycertificateissueddate=models.DateTimeField(blank=True, null=True)
@@ -71,56 +71,9 @@ class Students(models.Model):
          max_length=None,
          blank = True,null = True)
     #studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
-    
-    @staticmethod
-    def import_csv(filename):      
-        tmp_data=pd.read_csv(filename,sep=',')    
-        row_iter = tmp_data.iterrows()    
-        for i,row in row_iter:
-            a = Students(
-                pin = row['PIN'], 
-                sname=row['NAME'],
-                fname=row['FNAME'],
-                mname=row['MNAME'],
-                phno=row['PHNO'],
-                fphno=row['FPHONE'],
-                #dob=row['DOB'],
-                gender=row['GENDER'],
-                category=row['CATEGORY'],
-                scategory=row['SCATEGORY'],
-                religion=row['RELIGION'],
-                sacno=row['SACNO'],
-                sifsc=row['SIFSC'],
-                sbranch=row['SBRANCH'],
-                macno=row['MACNO'],
-                mifsc=row['MIFSC'],
-                mbranch=row['MBRNACH'],
-                email=row['EMAIL'],
-                #sscrank=row['SSCRANK'],
-                sschallticketno=row['SSCHALLTICKETNO'],
-                address=row['ADDRESS'],
-                village=row['VILLAGE'],
-                mandal=row['MANDAL'],
-                dist=row['DIST'],
-                allotedcategory=row['ALLOTEDCATEGORY'],
-                #dateofjoining=row['DATEOFJOINING'],
-                #polycetrank=row['POLYCETRANK'],
-                #polycetno=row['POLYCETNO'],
-                aadharno=row['AADHARNO'],
-                rationno=row['RATIONNO'],
-                #tcno=row['TCNO'],
-                #tcissueddate=row['TCISSUEDDATE'],
-                #discontinueddate=row['DISCOUNTINUEDDATE'],
-                #odno=row['ODNO'],
-                #odissueddate=row['ODISSUEDDATE'],
-                #studycertificateissueddate=row['STUDYCERTIFICATEISSUEDDATE'],
-    
-               
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True)
 
-            )
-            a.save()
-
+    
 
 class Marks(models.Model):
     studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
@@ -148,7 +101,6 @@ class Marks(models.Model):
         for i,row in row_iter:
             a = Marks(
                 pin = row['pin'], 
-
                 semister=row['semister'],
                 s1 =row['s1'],
                 s2=row['s2'], 

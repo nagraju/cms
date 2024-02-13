@@ -28,7 +28,8 @@
               Attendance
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'atten_index'%}">Display</a>
+              <a class="dropdown-item" href="{% url 'atten_index'%}">Total Attendance</a>
+              <a class="dropdown-item" href="{% url 'atten_monthly'%}">Monthly Attendance</a>              
               <a class="dropdown-item" href="{% url 'atte_upload' %}">Upload</a>
               <a class="dropdown-item" href="#">Link 3</a>       
             </div>
@@ -57,49 +58,27 @@
               <a class="dropdown-item" href="{% url 'u1m_upload'%}">upload</a>
             </div>
           </li>
+          {% if user.is_authenticated %}
+          
+
+          <li class="nav-item">
+            <a href="{% url 'users-profile' %}" class="nav-link" >       
+              <p>My Profile</p>
+            </a>
+
+          </li>
+          {% endif %}
 
         </ul>
-
-
       </div>
     </div>
 
-
-        <a href="{% url 'Marks_index'%}">Display</a> 
-        <a href="{% url 'm_upload'%}">Upload</a>
-
-       </div>
-      </div>
-    </div> 
-
-
-    <div class="dropdown">
-      <button class="dropbtn">Attendance
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="{% url 'atten_index'%}">Display</a>
-        <a href="{% url 'atte_upload' %}">Upload</a>
-        <a href="#">Link 3</a>
-      </div>
-    </div> 
-    <div class="dropdown">
-        <button class="dropbtn">Unit Marks 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="{% url 'um1_index'%}">UNIT 1</a> 
-          <a href="{% url 'unit_upload'%}">upload</a> 
-
-        </div>
-      </div> 
-      {% if user.is_authenticated %}
-     <span style="color:white">User: {{ user.get_username }}</span>
-     <a href="{% url 'users-profile' %}">Profile</a>
-     <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button type="submit">logout</button>
-  </form>    
-   {% else %}
-     <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
-   {% endif %}
+    {% if user.is_authenticated %}
+    <span style="color:white">User: {{ user.get_username }}</span>    
+    <form method="post" action="{% url 'logout' %}">
+     {% csrf_token %}
+     <button type="submit" class="btn" >logout</button>
+ </form>    
+  {% else %}
+    <a href="{% url 'login' %}?next={{ request.path }}" class="nav-link">Login</a>
+  {% endif %}
