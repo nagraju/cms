@@ -10,30 +10,36 @@
 
 {% if s %}
 <h1>report {{s.pin}}</h1>
-<tr><td>PIN:</td><td>{{s.pin}}</td></tr>></br>
-<tr><td>Name:</td><td>{{s.sname}}</td></tr></br>
-<tr><td>Date of birth:</td><td>{{s.dob}}</td></tr></br>
-<tr><td>FATHERNAME:</td><td>{{s.fname}}</td></tr></br>
-<tr><td>motherNAME:</td><td>{{s.mname}}</td></tr></br>
-<tr><td>ADDRESS:</td><td>{{s.address}}</td></tr></br>
-<tr><td>VILLAGE:</td><td>{{s.village}}</td></tr></br>
-<tr><td>MANDAL:</td><td>{{s.mandal}}</td></tr></br>
-<tr><td>DISTRICT:</td><td>{{s.dist}}</td></tr></br>
-<tr><td>PHONENUMBER:</td><td>{{s.phno}}</td></tr></br>
-<tr><td>FATHERNUMBER:</td><td>{{s.fphno}}</td></tr></br>
-<tr><td>EMAILID:</td><td>{{s.email}}</td></tr></br>
-<tr><td>GENDER:</td><td>{{s.gender}}</td></tr></br>
-{% endif  %}
+<table class="table"> 
+ <tbody>
+  <tr><td>PIN:</td><td>{{s.pin}}</td></tr>
+  <tr><td>Name:</td><td>{{s.sname}}</td></tr>
+  <tr><td>Date of birth:</td><td>{{s.dob}}</td></tr>
+  <tr><td>FATHERNAME:</td><td>{{s.fname}}</td></tr>
+  <tr><td>motherNAME:</td><td>{{s.mname}}</td></tr>
+  <tr><td>ADDRESS:</td><td>{{s.address}}</td></tr>
+  <tr><td>VILLAGE:</td><td>{{s.village}}</td></tr>
+  <tr><td>MANDAL:</td><td>{{s.mandal}}</td></tr>
+  <tr><td>DISTRICT:</td><td>{{s.dist}}</td></tr>
+  <tr><td>PHONENUMBER:</td><td>{{s.phno}}</td></tr>
+  <tr><td>FATHERNUMBER:</td><td>{{s.fphno}}</td></tr>
+  <tr><td>EMAILID:</td><td>{{s.email}}</td></tr>
+  <tr><td>GENDER:</td><td>{{s.gender}}</td></tr>
+  {% endif  %}
+ </tbody>
+</table>
 {% for t in a %}
 <h1>Attendance:</h1>
-<tr><td>Month:</td><td>{{t.month}}</td></tr></br>
-<tr><td>no.of working days in this month:</td><td>{{t.nfw}}</td></tr></br>
-<tr><td>no.of present days in this month:</td><td>{{t.npd}}</td></tr><tr></br>
-<tr><td>TOTAL WORKING DAYS:</td><td>{{t.twd}}</td></tr></br>
-<tr><td>TOTAL PRESENT DAYS:</td><td>{{t.tpd}}</td></tr></br>
-<tr><td>perentage:</td><td>{{t.per}}</td></tr></br>
-{% for u1 in u1m %}
-<h1>Unit 1 marks</h1>
+<table class="table"> 
+ <tbody>
+  <tr><td>Month:</td><td>{{t.month}}</td></tr>
+  <tr><td>no.of working days in this month:</td><td>{{t.nfw}}</td></tr>
+  <tr><td>no.of present days in this month:</td><td>{{t.npd}}</td></tr><tr>
+  <tr><td>TOTAL WORKING DAYS:</td><td>{{t.twd}}</td></tr>
+  <tr><td>TOTAL PRESENT DAYS:</td><td>{{t.tpd}}</td></tr>
+  <tr><td>perentage:</td><td>{{t.per}}</td></tr>
+  {% for u1 in u1m %}
+  <h1>Unit 1 marks</h1>
 <tr><td>sem:</td><td>{{u1.sem}}</td></tr></br>
 <tr><td>maths</td><td>{{u1.s1}}</td></tr></br>
 <tr><td>C-language</td><td>{{u1.s2}}</td></tr></br>
@@ -41,5 +47,6 @@
 
 {% endfor %}
 {% endfor %}
-
+</tbody>
+</table>
 {% endblock %}
