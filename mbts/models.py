@@ -19,7 +19,7 @@ class User(AbstractUser):
   
 
 class StudentClass(models.Model):
-    SEMS = {"1YEAR":"1 YEAR","3SEM":"3 SEM","4SEM":"4 SEM","5SEM":"5 SEM","6SEM":"6 SEM"}    
+    SEMS = {"1YEAR":"1 YEAR","3SEM":"3 SEM","4SEM":"4 SEM","5SEM":"5 SEM","6SEM":"6 SEM","COMPLETED":"COMPLETED","DETAINED":"DETAINED"}    
     begining_date = models.DateTimeField(blank=True, null=True)
     branch = models.CharField(max_length=5, default="CME")
     ending_date = models.DateTimeField(blank=True, null=True)
@@ -33,6 +33,7 @@ class Students(models.Model):
     sname=models.CharField(max_length=20, default='student')
     fname=models.CharField(max_length=20, default='father')
     mname=models.CharField(max_length=20, default='mother')
+    sem = models.CharField(max_length=20, null=True, choices=StudentClass.SEMS,)
     phno=models.CharField(max_length=12, null = True)
     fphno=models.CharField(max_length=12, null=True)
     dob=models.DateTimeField(blank=True, null=True)
@@ -65,6 +66,7 @@ class Students(models.Model):
     odissueddate=models.DateTimeField(blank=True, null=True)
     tcissueddate=models.DateTimeField(blank=True, null=True)
     studycertificateissueddate=models.DateTimeField(blank=True, null=True)
+    
     studentimage = models.ImageField(
         ("Title Image"), 
         upload_to='static/Images/student_image/',

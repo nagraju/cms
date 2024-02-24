@@ -59,4 +59,6 @@ path("a/<str:pin>/edit", Unit3marks.edit, name="um3_edit"),
 path("a/<str:sem>/bulkedit", Unit3marks.bulkedit, name="um3_bulkedit"),
 path("<str:spin>/um", Unit3marks.show, name="um3_show"),
 path("u3m/upload", Unit3marks.upload, name="um3_upload"),
+
+
 ]

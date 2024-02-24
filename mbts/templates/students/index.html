@@ -1,18 +1,30 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block content %}
+<link href="{% static '/css/jquery.dataTables.min.css' %}" rel="stylesheet"/>
 
 <h1>Students</h1>
 <a class="btn btn-primary btn-neutral" href="{% url 'newst' %}">New Student</a>
 <a class="btn btn-primary btn-neutral" href="{% url 'student_upload' %}">Import Students</a>
 {% if sl %}
     <table class="table">
-    {% for s in sl %}
+        <thead>
+            <tr>
+                <th>PIN</th>
+                <th>Student Name</th>
+                <th>SEM/YEAR</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
     <tbody>
+    {% for s in sl %}
     <tr>
         <td class="text-center">{{s.pin}}</td>
         <td>{{s.sname}}</td>
+        <td>{{s.sem}}</td>
         <td><a href="{% url 'student_show' s.pin %}"> <i class="tim-icons icon-single-02"></i>  Show</a></td>  
         <td><a href="{% url 'student_edit' s.pin %}"><i class="tim-icons icon-pencil"></i>  Edit</a></td>
         
@@ -24,9 +36,19 @@
     {% endfor %}
     </tbody>
     </table>
+  
 
 {% else %}
     <p>No students are available.</p>
 {% endif %}
 
-{% endblock %}
+{% endblock %} 
+{% block postcontent %}
+<script src="{% static 'js/plugins/jquery.dataTables.min.js' %} "></script>
+
+    <script>
+        $(function(){
+            $(".table").dataTable();
+        });
+    </script>
+{% endblock %} 
