@@ -86,9 +86,12 @@ def edit(request, spin):
         return render(request, "students/edit.html",context)
     else:
         sf = StudentForm(request.POST, request.FILES, instance=s )
-        sf.is_valid()     
-        s = sf.save()
+        is_valid = sf.is_valid()     
+        if(is_valid):
+            s = sf.save()
         context['s'] = s
+        context['sf'] = sf
+
         return render(request, "students/show.html", context)
 
 @login_required
