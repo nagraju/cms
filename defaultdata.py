@@ -1,4 +1,4 @@
-from mbts.models import StudentClass
+from mbts.models import StudentClass]
 
 s = StudentClass(sem = "1YEAR",remarks = "1st year", begining_date = "2023-12-01")
 s.save()
@@ -20,3 +20,5 @@ u.set_password("asd@123")
 superuser
 admin
 admin
+
+

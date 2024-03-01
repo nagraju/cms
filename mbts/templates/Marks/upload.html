@@ -4,6 +4,14 @@
 
 <form action="" method="post" enctype="multipart/form-data"/>
 {% csrf_token %}
+<label for="">YEAR/SEM</label>
+<select class="btn btn-primary btn-neutral" name="sem">
+    <option value="1YEAR">1 Year</option>
+    <option value="3SEM">3 Sem</option>
+    <option value="4SEM">4 Sem</option>
+    <option value="5SEM">5 Sem</option>
+</select>
+<br/>
 <label for="">File</label>
 <input type="file" name="csvfile" />
 <input type="Submit" />

@@ -28,13 +28,13 @@ path("a/<str:sem>/bulkedit", attendance.bulkedit, name="atten_bulkedit"),
 path("<str:student>/show", attendance.show, name="atten_show"),
 
 
-path("m/upload", marks.upload, name="upload"),
-path("m/", marks.index, name="Marks_index"),
+path("m/upload", marks.upload, name="marks_upload"),
+path("m/", marks.index, name="marks_index"),
 path("a/<str:sem>",marks.index, name="m_index"),
 path("a/<str:pin>/edit", marks.edit, name="m_edit"),
 path("a/<str:sem>/bulkedit", marks.bulkedit, name="m_bulkedit"),
 path("<str:spin>/m", marks.show, name="m_show"),
-path("m/upload", marks.upload, name="m_upload"),
+
 
 
 

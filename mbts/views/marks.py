@@ -9,10 +9,10 @@ from django.forms import modelformset_factory
 
 
 def index(request, sem='1'):
-    sem = request.GET.get("sem",1)    
+    sem = request.GET.get("sem",'1YEAR')    
     sc = StudentClass.objects.filter(sem=sem)
     if(sc):
-         u1m= sc[0].Marks_set.all
+         m= Marks.objects.filter(sem=sem).all()
          context = {"m": m}        
     else:
         context = {"m": []}
@@ -22,16 +22,18 @@ def index(request, sem='1'):
 
 def upload(request):
     context = {}
+     
     if(request.method == "GET"):       
         
         return render(request, "Marks/upload.html", context)
     else:
         if request.method == 'POST' and request.FILES['csvfile']:
+            sem = request.POST.get("sem",1)   
             myfile = request.FILES['csvfile']
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
-            Marks.import_csv(uploaded_file_url)
+            Marks.import_csv(sem,uploaded_file_url)
         return render(request, "Marks/upload_res.html", context)
 
 

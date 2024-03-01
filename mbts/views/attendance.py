@@ -57,7 +57,7 @@ def show(request, student):
     context = {"s" : s }
     return render(request, "attendance/show.html", context)
 
-def edit(request,sem):
+def edit(request,pin):
     context = {}
     atte = Attendance.objects.all
     fs = modelformset_factory(Attendance, fields=["student", "nfw","npd","twd","tpd","per"])
