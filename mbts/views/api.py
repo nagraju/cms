@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.exceptions  import AuthenticationFailed
-from mbts.serializers import StudentsSerializer, MarksSerializer, LoginSerializer
+from mbts.serializers import LoginStudentSerializer, StudentsSerializer, MarksSerializer
 from mbts.models import Students, User
 from mbts.models import Students,Attendance,Unit1marks
 from django.contrib.auth import authenticate
@@ -23,7 +23,7 @@ def students(request):
     else:
         s = Students.objects.all()
         serializer = StudentsSerializer(s, many= True)
-        return JsonResponse({"students":serializer.data})
+        return JsonResponse(serializer.data)
 
 
 @api_view(['GET','POST'])
@@ -59,19 +59,17 @@ class LoginAPI(APIView):
     def post(self,request):
         if ('username' not in request.data) or ('password' not in request.data):
             raise AuthenticationFailed("Empty Username or password")
-
         username = request.data['username']
-        password = request.data['password']
-        
-        
+        password = request.data['password']        
         user = authenticate(request, username=username, password=password)
         if(user is None):
-            raise AuthenticationFailed("User not Found")
-        
+            raise AuthenticationFailed("User not Found")       
+        u = LoginStudentSerializer(user.students, context={'username': user.username, 'role':'Student'})
         refresh = RefreshToken.for_user(user)
-             
         return JsonResponse({"refresh":str(refresh),
-                             'access': str(refresh.access_token)
+                             'jwtToken': str(refresh.access_token),
+                             'message':'success',
+                             'responseUser': u.data
                              })
         
 

@@ -2,16 +2,30 @@ from mbts.models import User, Students, Marks
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', "password", "students"]
+        fields = ['username', 'email', "students"]
+
 
 
 class StudentsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Students
-        fields = ['pin',"sname","sem"]
+        fields = ['pin','email',"sname","sem"]
+
+
+class LoginStudentSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField('_username')
+    role = serializers.SerializerMethodField('_role')
+
+    def _username(self,context):
+        return self.context.get('username')       
+    def _role(self,context):
+        return self.context.get('role')  
+    class Meta:
+        model = Students
+        fields = ['pin', 'email','sname','sem', 'username', 'role']
 
 class MarksSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
