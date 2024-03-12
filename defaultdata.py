@@ -17,8 +17,13 @@ u = User(username="suviswas")
 u.set_password("asd@123")
 
 
+
+
 superuser
 admin
 admin
+u = User.objects.first()
+u.role = 1
+u.save()
 
 

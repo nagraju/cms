@@ -2,13 +2,17 @@
 
 
 {% block content %}
-
+<h2>Attendance Upload</h2>
 <form action="" method="post" enctype="multipart/form-data"/>
+
 {% csrf_token %}
+{{sf}}
 <label for="">File</label>
 <input type="file" name="csvfile" />
 <input  class="btn btn-primary btn-neutral" type="Submit" />
 </form>
+
+<br/>
 <h3>To download sample format <a class="btn btn-primary" href="/media/static/templates/sampleattendence.csv">click here</a></h3>
     
 {% endblock %}

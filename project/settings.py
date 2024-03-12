@@ -163,3 +163,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL  = "/n/i"
 AUTH_USER_MODEL = 'mbts.User'
+DEBUG = True

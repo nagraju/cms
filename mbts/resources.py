@@ -6,4 +6,4 @@ class StudentsResource(resources.ModelResource):
     class Meta:
         model = Students
         import_id_fields = ('pin',)
-        fields = ["pin", "sname", "fname", "phno","polycetrank"]
+        fields = ["pin", "sname", "fname","email", "phno","polycetrank",'sem']

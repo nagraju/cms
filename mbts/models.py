@@ -1,6 +1,7 @@
 from django.db import models
 import pandas as pd
 from django.contrib.auth.models import AbstractUser
+from django.dispatch import receiver
 
 '''class StudentClass(models.Model):
     sem = models.IntegerField()
@@ -47,7 +48,7 @@ class Students(models.Model):
     macno=models.CharField(max_length=22, blank=True, null=True)
     mifsc=models.CharField(max_length=20,blank=True, null=True)
     mbranch=models.CharField(max_length=20,blank=True, null=True)
-    email=models.CharField(max_length=30,blank=True, null=True)
+    email=models.CharField(max_length=30)
     sscrank=models.IntegerField(default=1234, blank=True, null=True)
     sschallticketno=models.CharField(max_length=20, blank=True, null=True)
     address=models.CharField(max_length=30, blank=True, null=True)
@@ -75,6 +76,28 @@ class Students(models.Model):
     #studentclass = models.ForeignKey(StudentClass, on_delete=models.CASCADE)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True)
 
+
+class TotalAttendance(models.Model):
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE)
+    sem = models.CharField(max_length=10)
+    nwd=models.IntegerField(default=0)
+    npd=models.IntegerField(default=0)
+    twd=models.IntegerField(default=0)
+    tpd=models.IntegerField(default=0)
+
+
+
+
+@receiver(models.signals.pre_save, sender=Students)
+def execute_after_save(sender, instance, *args, **kwargs):
+    if instance.user_id is None:
+        TotalAttendance.objects.create(student=instance, sem=instance.sem)
+        u = User.objects.create(username=instance.email)        
+        u.set_password('asdf@123')
+        u.save()
+        instance.user = u
+        
+        
     
 
 class Marks(models.Model):
@@ -232,19 +255,20 @@ class Marks(models.Model):
             a.save()
 
 class Attendance(models.Model):        
-    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE)
+    #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE)
+    sem = models.CharField(max_length=10)
     month=models.CharField(max_length=20)
-    nfw=models.IntegerField()
-    npd=models.IntegerField()
-    twd=models.IntegerField()
-    tpd=models.IntegerField()
-    per = models.IntegerField()
+    nfw=models.IntegerField(default=0)
+    npd=models.IntegerField(default=0)
+    twd=models.IntegerField(default=0)
+    tpd=models.IntegerField(default=0)
+    per = models.IntegerField(default=0)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE)
     
 
    
     @staticmethod
-    def import_csv(filename):      
+    def import_csv(filename, sem):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
@@ -257,9 +281,20 @@ class Attendance(models.Model):
                 twd = 0,
                 tpd = 0,
                 per = 0,
-                studentclass_id = '4SEM',                          
+                #studentclass_id = '4SEM', 
+                sem = sem                         
             )
             a.save()
+
+
+
+@receiver(models.signals.post_save, sender=Attendance)
+def attendance_after_save(sender, instance, created, *args, **kwargs):
+    if created:
+        a = TotalAttendance.objects.filter(student=instance.student, sem=instance.sem).first()
+        a.twd= a.twd + instance.nfw
+        a.tpd= a.tpd + instance.npd
+        a.save()
 
 class Unit1marks(models.Model):
     studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')

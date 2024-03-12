@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<form>
+{{semform.sem}}
+<input type="submit" value="Submit" class="btn btn-primary btn-neutral"/>
+</form>
+
+{% if totalAttendance %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PIN</th>                
+                <th>SEM/YEAR</th>           
+                <th>Total working Days</th>
+                <th>Total Present Days</th>
+            </tr>
+        </thead>
+    <tbody>
+    {% for s in totalAttendance %}
+    <tr>
+        <td class="text-center">{{s.student_id}}</td>  
+        <td>{{s.sem}}</td>      
+        <td>{{s.twd}}</td>
+        <td>{{s.tpd}}</td>
+        
+    </tr>
+
+    {% endfor %}
+    </tbody>
+    </table>
+  
+
+{% else %}
+    <p>No Attendances are available.</p>
+{% endif %}
+
+{% endblock %} 

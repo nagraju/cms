@@ -38,7 +38,7 @@ class ClassAttendance(ModelForm):
 class AttendanceForm(ModelForm):
     class Meta:
         model = Attendance
-        fields = ("nfw","npd")
+        fields = ("month","sem","nfw","npd")
 
 #unit marks form
 
@@ -90,6 +90,11 @@ class SearchForm(ModelForm):
         widgets = {
             'sem': forms.Select(choices=StudentClass.SEMS, attrs={'class': 'form-control'}),
         }
+
+
+class SemSearchForm(forms.Form):    
+    sem = forms.ChoiceField(required=False, choices=StudentClass.SEMS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))
+    
 
 class StudentProfileForm(ModelForm):
     class Meta:

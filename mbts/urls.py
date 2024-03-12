@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import student
 from .views import attendance
 from .views import marks
-from .views import Unit1marks,Unit2marks,Unit3marks
+from .views import Unit1marks,Unit2marks,Unit3marks, totalattendance
 
 urlpatterns = [
 path("i/", student.index, name="student_index"),
@@ -20,13 +20,12 @@ path("i/report", student.report, name="student_report"),
 
 #Attendance
 path("a/upload", attendance.upload, name="atte_upload"),
-path("a/", attendance.index, name="atten_index"),
-path("a/monthly", attendance.monthly, name="atten_monthly"),
-path("a/<str:sem>", attendance.index, name="atten_index"),
+path("a/index", attendance.index, name="atten_index"),
 path("a/<str:pin>/edit", attendance.edit, name="atten_edit"),
 path("a/<str:sem>/bulkedit", attendance.bulkedit, name="atten_bulkedit"),
 path("<str:student>/show", attendance.show, name="atten_show"),
 
+path("t/", totalattendance.index, name="total_atten_index"),
 
 path("m/upload", marks.upload, name="marks_upload"),
 path("m/", marks.index, name="marks_index"),

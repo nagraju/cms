@@ -3,20 +3,21 @@
 
 {% block content %}
 
-
-STUDENT ATTENDANCE DETAILS
-<table>
-    <tr><td>PIN</td><td>{{s.student_id}}</td></tr>
-    <tr><td>MONTH</td><td>{{s.month}}</td></tr>
-    <tr><td>NO.OF WORKING</td><td>{{s.nfw}}</td></tr>
-    <tr><td>NO.OF PRESENT DAYS</td><td>{{s.npd}}</td></tr>
-    <tr><td>TOTAL WORKING DAYS</td><td>{{s.twd}}</td></tr>
-    <tr><td>TOTAL PRESENT DAYS</td><td>{{s.tpd}}</td></tr>
-    <tr><td>per</td><td>{{s.per}}</td></tr>
+{% if attendances %}    
     
-
-    
-</table>
+    <table class="table">
+    <thead> 
+        <tr><td>PIN</td><td>MONTH</td><td>NO.OF WORKING</td><td>NO.OF PRESENT DAYS</td> </tr>
+        </thead>
+    {% for s in attendances %}
+     
+    <tr><td>{{s.student_id}}</td>
+    <td>{{s.month}}</td>
+    <td>{{s.nfw}}</td>
+    <td>{{s.npd}}</td></tr>   
+    {% endfor%}
+    </table>
+{% endif %}
 
 <a href="{% url 'atten_index' %}">ATTENDANCE</a>
 

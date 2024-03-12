@@ -18,7 +18,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'newst' %}">New Student</a>
-              <a class="dropdown-item" href="{% url 'student_index' %}">display</a>
+              <a class="dropdown-item" href="{% url 'student_index' %}">Display</a>
               <a class="dropdown-item" href="{% url 'student_report' %}">Report</a>              
             </div>
           </li>
@@ -28,10 +28,9 @@
               Attendance
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'atten_index'%}">Total Attendance</a>
-              <a class="dropdown-item" href="{% url 'atten_monthly'%}">Monthly Attendance</a>              
-              <a class="dropdown-item" href="{% url 'atte_upload' %}">Upload</a>
-              <a class="dropdown-item" href="#">Link 3</a>       
+              <a class="dropdown-item" href="{% url 'total_atten_index'%}">Total Attendance</a>
+              <a class="dropdown-item" href="{% url 'atten_index'%}">Monthly Attendance</a>
+              <a class="dropdown-item" href="{% url 'atte_upload' %}">Upload</a>                    
             </div>
           </li>
 

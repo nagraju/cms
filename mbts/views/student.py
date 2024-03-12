@@ -19,7 +19,7 @@ def upload(request):
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.path(filename)
             with open(uploaded_file_url, 'r') as fh:
-                imported_data = tablib.Dataset().load(fh)            
+                imported_data = tablib.Dataset().load(fh,format='csv', headers=True)            
             sr = StudentsResource()                        
             result = sr.import_data(imported_data, dry_run=False) 
             context["result"] = result
@@ -64,10 +64,13 @@ def newst(request):
         return render(request, "students/newst.html", context)
     else:
         sf = StudentForm(request.POST, request.FILES)
-        sf.is_valid()     
-        s = sf.save()
-        context['s'] = s
-        return render(request, "students/show.html", context)
+        if sf.is_valid():
+            s = sf.save()
+            context['s'] = s
+            return render(request, "students/show.html", context)
+        else:
+            context['forms'] = sf
+            return render(request, "students/newst.html",context)
 
   
 def show(request, spin):
