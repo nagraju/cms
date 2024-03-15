@@ -84,12 +84,20 @@ class TotalAttendance(models.Model):
     npd=models.IntegerField(default=0)
     twd=models.IntegerField(default=0)
     tpd=models.IntegerField(default=0)
+    
+    def percntage(self):
+        if self.twd>0:
+            return round(self.tpd*100/self.twd,2)
+        else:
+            return 0
+    
+    
 
 
 
 
-@receiver(models.signals.pre_save, sender=Students)
-def execute_after_save(sender, instance, *args, **kwargs):
+@receiver(models.signals.post_save, sender=Students)
+def execute_after_save(sender, instance, created, *args, **kwargs):
     if instance.user_id is None:
         TotalAttendance.objects.create(student=instance, sem=instance.sem)
         u = User.objects.create(username=instance.email)        
@@ -265,7 +273,11 @@ class Attendance(models.Model):
     per = models.IntegerField(default=0)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE)
     
-
+    def percntage(self):
+        if self.nfw>0:
+            return round(self.npd*100/self.nfw,2)
+        else:
+            return 0
    
     @staticmethod
     def import_csv(filename, sem):      
@@ -285,7 +297,8 @@ class Attendance(models.Model):
                 sem = sem                         
             )
             a.save()
-
+    
+    
 
 
 @receiver(models.signals.post_save, sender=Attendance)
@@ -297,7 +310,8 @@ def attendance_after_save(sender, instance, created, *args, **kwargs):
         a.save()
 
 class Unit1marks(models.Model):
-    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    sem = models.CharField(max_length=20)
     s1=models.IntegerField() 
     s2=models.IntegerField() 
     s3=models.IntegerField() 
@@ -317,7 +331,7 @@ class Unit1marks(models.Model):
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
-            s = Students.objects.get(pin=row['PIN'])
+            s = Students.objects.get(pin=row['pin'])
             a = Unit1marks(
                 student=s,
                 s1 =row['s1'],
@@ -332,13 +346,28 @@ class Unit1marks(models.Model):
                 s10=0,
                 s11=0,
                 s12=0,
-                studentclass_id = '4SEM', 
+                sem="3SEM"
                 
             )
             a.save()
+    def subject_codes(self):
+        if self.sem == "1YEAR":
+            return [101,102,103,104,105,106,107,108,109,110,111]
+        elif self.sem == "3SEM":
+            return [301,302,303,304,305,306,307,308,309]
+        elif self.sem == "4SEM":
+            return [401,402,403,404,405,406,407,408,409]
+        elif self.sem == "5SEM":
+            return [501,502,503,504,505,506,507,508,509]
+        else:
+            return []
+
+
+
+    
 
 class Unit2marks(models.Model):
-    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
     s1=models.IntegerField() 
     s2=models.IntegerField() 
     s3=models.IntegerField() 
@@ -351,13 +380,14 @@ class Unit2marks(models.Model):
     s10=models.IntegerField() 
     s11=models.IntegerField() 
     s12=models.IntegerField()
+    sem = models.CharField(max_length=10)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
     @staticmethod
     def import_csv(filename):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
-            s = Students.objects.get(pin=row['PIN'])
+            s = Students.objects.get(pin=row['pin'])
             a = Unit2marks(
                 student=s,
                 s1 =row['s1'],
@@ -372,13 +402,25 @@ class Unit2marks(models.Model):
                 s10=0,
                 s11=0,
                 s12=0,
-                studentclass_id = '4SEM', 
+                sem = '4SEM', 
                 
             )
             a.save()
 
+    def subject_codes(self):
+        if self.sem == "1YEAR":
+            return [101,102,103,104,105,106,107,108,109,110,111]
+        elif self.sem == "3SEM":
+            return [301,302,303,304,305,306,307,308,309]
+        elif self.sem == "4SEM":
+            return [401,402,403,404,405,406,407,408,409]
+        elif self.sem == "5SEM":
+            return [501,502,503,504,505,506,507,508,509]
+        else:
+            return []
+
 class Unit3marks(models.Model):
-    studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
     s1=models.IntegerField() 
     s2=models.IntegerField() 
     s3=models.IntegerField() 
@@ -391,13 +433,15 @@ class Unit3marks(models.Model):
     s10=models.IntegerField() 
     s11=models.IntegerField() 
     s12=models.IntegerField()
+    sem = models.CharField(max_length=10)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
+        
     @staticmethod
     def import_csv(filename):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
-            s = Students.objects.get(pin=row['PIN'])
+            s = Students.objects.get(pin=row['pin'])
             a = Unit3marks(
                 student=s,
                 s1 =row['s1'],
@@ -415,7 +459,19 @@ class Unit3marks(models.Model):
                 studentclass_id = '4SEM', 
                 
             )
-            a.save()  
+            a.save() 
+
+    def subject_codes(self):
+        if self.sem == "1YEAR":
+            return [101,102,103,104,105,106,107,108,109,110,111]
+        elif self.sem == "3SEM":
+            return [301,302,303,304,305,306,307,308,309]
+        elif self.sem == "4SEM":
+            return [401,402,403,404,405,406,407,408,409]
+        elif self.sem == "5SEM":
+            return [501,502,503,504,505,506,507,508,509]
+        else:
+            return []
 
                       
 

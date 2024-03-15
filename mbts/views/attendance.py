@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
-from mbts.models import Attendance, StudentClass
+from mbts.models import Attendance, StudentClass, TotalAttendance
 from mbts.forms import ClassAttendance, SemSearchForm, SearchForm
 from django.core.files.storage import FileSystemStorage
 from django.forms import modelformset_factory
@@ -50,7 +49,7 @@ def edit(request,pin):
 
 
 def bulkedit(request,sem):
-    fs = modelformset_factory(Attendance, fields=["month","nfw","npd"],extra=2)
+    fs = modelformset_factory(Attendance, fields=["month","nfw","npd"],extra=0)
     context = {}     
     if(request.method == "GET"):                          
         context["fs"] = fs
@@ -60,6 +59,11 @@ def bulkedit(request,sem):
         f.save()
         context["fs"] = fs
         return render(request, "attendance/edit.html", context)
+    
+def delete(request,sem):
+    Attendance.objects.filter(sem=sem).all().delete()   
+    TotalAttendance.objects.filter(sem=sem).update(twd=0, tpd=0)
+    return redirect('atten_index')
 
         
 

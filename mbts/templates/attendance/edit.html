@@ -8,12 +8,14 @@
 
 {{ fs.management_form }}
 <table class="table">
-    <thead><td></td></td><td>PIN</td><td>MONTH</td><td>No. of Working Days</td><td>No. Of Present Days</td></thead>
+    <thead><td></td></td><td>PIN</td><td>SEM</td><td>MONTH</td><td>No. of Working Days</td><td>No. Of Present Days</td></thead>
 {% for form in fs %}
 <tbody>
 <tr>
     <td>{{ form.id }}</td>
+   
     <td>{{form.instance.student.pin}}</td>
+    <td>{{ form.instance.sem }}</td>
     <td>{{ form.month }}</td>
     <td>{{ form.nfw }}</td>
     <td>{{ form.npd }}</td>

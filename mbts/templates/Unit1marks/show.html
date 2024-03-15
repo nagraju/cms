@@ -2,17 +2,31 @@
 
 
 {% block content %}
+{% if um %} 
 
-STUDENT MARKS DETAILS
-<table>
-    <tr><td>PIN</td><td>{{s.pin}}</td></tr>
-    <tr><td>Name</td><td>{{s.sname}}</td></tr>
-    <tr><td>maths</td><td>{{s.s1}}</td></tr>
-    <tr><td>C-language</td><td>{{s.s2}}</td></tr>
-    <tr><td>DBMS</td><td>{{s.s3}}</td></tr>
-    
-</table>
+<table class="table">
+    <thead> 
+        <tr><td>PIN</td><td>MATHS</td><td>CHEMISTRY</td><td>PHYSICS</td> </tr>
+        </thead>
+    {% for u in um %}
+     
+    <tr><td>{{u.student_id}}</td>
+    <td>{{u.s1}}</td>
+    <td>{{u.s2}}</td>
+    <td>{{u.s3}}</td></tr>   
+    {% endfor%}
+    </table>
+{% endif %}
 
-<a href="{% url 'student_index' %}">Marks</a>
+<a href="{% url 'um1_index' %}">Unit1marks</a>
 
 {% endblock %}
+
+
+
+
+
+
+
+    
+    

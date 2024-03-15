@@ -9,6 +9,7 @@ urlpatterns = [
 path("i/", student.index, name="student_index"),
 path("i/upload", student.upload, name="student_upload"),
 path("i/<str:spin>/show", student.show, name="student_show"),
+path("i/<str:spin>/reset", student.pass_reset, name="student_reset_pass"),
 
 path("i/<str:spin>/edit", student.edit, name="student_edit"),
 path("i/<str:spin>/delete", student.delete, name="student_delete"),
@@ -24,6 +25,7 @@ path("a/index", attendance.index, name="atten_index"),
 path("a/<str:pin>/edit", attendance.edit, name="atten_edit"),
 path("a/<str:sem>/bulkedit", attendance.bulkedit, name="atten_bulkedit"),
 path("<str:student>/show", attendance.show, name="atten_show"),
+path("a/<str:sem>/delete", attendance.delete, name="atten_del_sem"),
 
 path("t/", totalattendance.index, name="total_atten_index"),
 

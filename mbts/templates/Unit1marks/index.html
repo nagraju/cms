@@ -4,27 +4,41 @@
 {% block content %}
 
 <form method="get">
-    <select  class="btn btn-primary btn-neutral" name="sem">
-        <option value="1YEAR">1 Year</option>
-        <option value="3SEM">3 Sem</option>
-        <option value="4SEM">4 Sem</option>
-        <option value="5SEM">5 Sem</option>
-    </select>
+    {{form}}
     <input class="btn btn-primary btn-neutral" type="submit" />    
 </form>
 
 <h1>{{sem}} UNIT MARKS-1</h1>
-    {% if u1m %}
-    <a href="{% url 'u1m_bulkedit' sem %}"> Edit All</a>
+    {% if um %}
     
-    <table>
-    {% for s in u1m %}
+    
+    <table class="table">
+       
+    {% for s in um %}
+    {% if forloop.counter  == 1 %}
+    <thead>
+        <th>PIN</th>        
+        {% for i in s.subject_codes %}
+            <th>{{i}}</th>
+        {%endfor %}
+    
+    </thead>
+    {% endif %}
     <tr>
-        <td>{{s.student_id}}</td>
-        <td>{{s.student.name}}</td>
+        <td>{{s.student_id}}</td>        
         <td>{{s.s1}}</td>
         <td>{{s.s2}}</td>
         <td>{{s.s3}}</td>
+        <td>{{s.s4}}</td>
+        <td>{{s.s5}}</td>
+        <td>{{s.s6}}</td>
+        <td>{{s.s7}}</td>
+        <td>{{s.s8}}</td>
+        <td>{{s.s9}}</td>
+    {% if s.sem == '1YEAR' %}
+        <td>{{s.s10}}</td>
+        <td>{{s.s11}}</td>
+    {% endif %}
         <td><a href="{% url 'u1m_show' s.student_id %}">Show</a></td>
         <td><a href="{% url 'u1m_edit' s.student_id %}">Edit</a></td>
 

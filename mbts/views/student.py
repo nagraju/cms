@@ -108,6 +108,14 @@ def delete(request, spin):
     s.delete()
     return render(request, "students/delete.html")
 
+
+@login_required
+def pass_reset(request, spin):
+    s = Students.objects.get(pk = spin)
+    if s.user is None:
+        s.user.set_password("default@123")
+    return render(request, "students/reset_pass.html")
+
 def report(request):
     #projects = Project.objects.select_related('leader').all()
     spin = request.GET.get("spin","")

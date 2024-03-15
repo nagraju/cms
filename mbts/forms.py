@@ -96,6 +96,13 @@ class SemSearchForm(forms.Form):
     sem = forms.ChoiceField(required=False, choices=StudentClass.SEMS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))
     
 
+class UnitSearchForm(forms.Form):   
+    SEMS = (("1YESR","1st YEAR"),("3SEM","3rd SEM"),("4SEM","4th SEM"),("5SEM","5th SEM")) 
+    UNITS = (("UNIT1","UNIT 1"),('UNIT2','UNIT 2'),('UNIT3', 'UNIT 3'))
+    sem = forms.ChoiceField(required=False, choices= SEMS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))
+    unit = forms.ChoiceField(required=False, choices= UNITS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))
+
+
 class StudentProfileForm(ModelForm):
     class Meta:
         model = Students

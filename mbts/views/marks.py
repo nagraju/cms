@@ -3,19 +3,18 @@ from django.shortcuts import render
 from mbts.models import Marks
 from django.core.files.storage import FileSystemStorage
 from mbts.models import Marks,StudentClass
-#from mbts.forms import ClassMarks
+from mbts.forms import SemSearchForm
 from django.forms import modelformset_factory
 
 
 
-def index(request, sem='1'):
+
+def index(request):    
     sem = request.GET.get("sem",'1YEAR')    
-    sc = StudentClass.objects.filter(sem=sem)
-    if(sc):
-         m= Marks.objects.filter(sem=sem).all()
-         context = {"m": m}        
-    else:
-        context = {"m": []}
+    sf = SemSearchForm(request.GET)
+    m= Marks.objects.filter(sem=sem).all()    
+    context = {"m": m}        
+    context["semform"] = sf
     context["sem"] = sem
     return render(request, "Marks/index.html", context)
 

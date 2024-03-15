@@ -10,20 +10,23 @@
 {% if totalAttendance %}
     <table class="table">
         <thead>
-            <tr>
+            <tr>                
                 <th>PIN</th>                
                 <th>SEM/YEAR</th>           
                 <th>Total working Days</th>
                 <th>Total Present Days</th>
+                <th>Percentage</th>
             </tr>
         </thead>
     <tbody>
     {% for s in totalAttendance %}
     <tr>
-        <td class="text-center">{{s.student_id}}</td>  
+        <td>{{s.student_id}}</td>  
         <td>{{s.sem}}</td>      
         <td>{{s.twd}}</td>
         <td>{{s.tpd}}</td>
+        <td>{{s.percntage }}%</td>
+
         
     </tr>
 

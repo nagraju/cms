@@ -17,6 +17,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
     <tbody>
@@ -29,7 +30,7 @@
         <td><a href="{% url 'student_edit' s.pin %}"><i class="tim-icons icon-pencil"></i>  Edit</a></td>
         
         <td><a href="{% url 'student_delete' s.pin %}"><i class="tim-icons icon-trash-simple"></i>  Delete</a></td>
-
+        <td><a href="{% url 'student_reset_pass' s.pin %}"><i class="tim-icons icon-trash-simple"></i>  Reset Password</a></td>
         
     </tr>
 

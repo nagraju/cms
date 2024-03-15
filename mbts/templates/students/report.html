@@ -28,24 +28,32 @@
   {% endif  %}
  </tbody>
 </table>
-{% for t in a %}
-<h1>Attendance:</h1>
+
+
+<h1>Attendance:</h1> 
 <table class="table"> 
- <tbody>
-  <tr><td>Month:</td><td>{{t.month}}</td></tr>
-  <tr><td>no.of working days in this month:</td><td>{{t.nfw}}</td></tr>
-  <tr><td>no.of present days in this month:</td><td>{{t.npd}}</td></tr><tr>
-  <tr><td>TOTAL WORKING DAYS:</td><td>{{t.twd}}</td></tr>
-  <tr><td>TOTAL PRESENT DAYS:</td><td>{{t.tpd}}</td></tr>
-  <tr><td>perentage:</td><td>{{t.per}}</td></tr>
-  {% for u1 in u1m %}
+<tr><td>Month</td><td>SEM</td><td>Working Days</td><td>Present Days</td><td>Percentage</td></tr>
+
+{% for t in a %}
+<tr>
+<td>{{t.month}}</td>
+<td>{{t.sem}}</td>
+<td>{{t.nfw}}</td>
+<td>{{t.npd}}</td>
+<td>{{t.percntage}}%</td>
+</tr>
+{% endfor %}
+
+
+
+
+{% for u1 in u1m %}
   <h1>Unit 1 marks</h1>
 <tr><td>sem:</td><td>{{u1.sem}}</td></tr></br>
 <tr><td>maths</td><td>{{u1.s1}}</td></tr></br>
 <tr><td>C-language</td><td>{{u1.s2}}</td></tr></br>
 <tr><td>DBMS</td><td>{{u1.s3}}</td></tr></br>
 
-{% endfor %}
 {% endfor %}
 </tbody>
 </table>

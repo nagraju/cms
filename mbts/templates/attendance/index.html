@@ -13,18 +13,26 @@
 <h1>{{sem}} Attendance</h1>
     {% if atte %}
     <a class="btn btn-primary btn-neutral" href="{% url 'atten_bulkedit' sem %}"> Edit All</a>
+    <a class="btn btn-primary btn-neutral" href="{% url 'atten_del_sem' sem %}"> Delete All</a>
     
     <table class="table">
+        <thead>
+        <th>PIN</th>       
+        <th>SEM</th>
+        <th>MONTH</th>
+        <th>Working Days</th>
+        <th>Present Days</th>
+    </thead>
     {% for s in atte %}
     <tbody>
       <tr>
-        <td>{{s.student_id}}</td>
-        <td>{{s.student.name}}</td>
+        <th>{{s.student_id}}</td>      
+        <td>{{s.sem}}</td>
         <td>{{s.month}}</td>
         <td>{{s.nfw}}</td>
         <td>{{s.npd}}</td>
         <td><a href="{% url 'atten_show' s.student_id %}"> <i class="tim-icons icon-single-02"></i> Show</a></td>
-        <td><a href="{% url 'atten_edit' s.student_id %}"><i class="tim-icons icon-pencil"></i> Edit</a></td>
+        <td><a href="{% url 'atten_edit' s.student_id %}"><i class="tim-icons icon-pencil"></i> Edit</a></th>
 
         
      </tr>
