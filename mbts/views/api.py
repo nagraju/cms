@@ -9,7 +9,7 @@ from mbts.models import Students, User
 from mbts.models import Students,Attendance,Unit1marks
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 @api_view(['GET', 'POST'])
 @permission_classes([]) 
@@ -55,8 +55,8 @@ def marks(request):
 
 
 class LoginAPI(APIView):
-    permission_classes = []
-    def post(self,request):
+    permission_classes = [AllowAny]
+    def post(self,request):        
         if ('username' not in request.data) or ('password' not in request.data):
             raise AuthenticationFailed("Empty Username or password")
         username = request.data['username']

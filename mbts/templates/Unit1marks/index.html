@@ -8,7 +8,7 @@
     <input class="btn btn-primary btn-neutral" type="submit" />    
 </form>
 
-<h1>{{sem}} UNIT MARKS-1</h1>
+<h1>{{sem}} {{unit}} MARKS</h1>
     {% if um %}
     
     
@@ -39,8 +39,8 @@
         <td>{{s.s10}}</td>
         <td>{{s.s11}}</td>
     {% endif %}
-        <td><a href="{% url 'u1m_show' s.student_id %}">Show</a></td>
-        <td><a href="{% url 'u1m_edit' s.student_id %}">Edit</a></td>
+        <td><a href="{% url 'u1m_show' s.student_id %}?sem={{sem}}&unit={{unit}}">Show</a></td>
+        <td><a href="{% url 'u1m_edit' s.student_id %}?sem={{sem}}&unit={{unit}}">Edit</a></td>
 
         
     </tr>

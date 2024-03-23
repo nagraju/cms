@@ -112,8 +112,10 @@ def delete(request, spin):
 @login_required
 def pass_reset(request, spin):
     s = Students.objects.get(pk = spin)
-    if s.user is None:
-        s.user.set_password("default@123")
+    if s.user is not None:        
+        s.user.set_password("asdf@123")
+        s.user.save()
+
     return render(request, "students/reset_pass.html")
 
 def report(request):

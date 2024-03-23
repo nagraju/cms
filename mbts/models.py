@@ -309,25 +309,84 @@ def attendance_after_save(sender, instance, created, *args, **kwargs):
         a.tpd= a.tpd + instance.npd
         a.save()
 
-class Unit1marks(models.Model):
+
+class UnitMarks(models.Model):
+    TEST = {"UNIT1":"UNIT-I","UNIT2":"UNIT-II","UNIT3":"UNIT-III"} 
     #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    unit = models.CharField(max_length=20,default="UNIT1")
     sem = models.CharField(max_length=20)
-    s1=models.IntegerField() 
-    s2=models.IntegerField() 
-    s3=models.IntegerField() 
-    s4=models.IntegerField() 
-    s5=models.IntegerField() 
-    s6=models.IntegerField() 
-    s7=models.IntegerField() 
-    s8=models.IntegerField() 
-    s9=models.IntegerField() 
-    s10=models.IntegerField() 
-    s11=models.IntegerField() 
-    s12=models.IntegerField()
+    s1=models.IntegerField(default=0) 
+    s2=models.IntegerField(default=0) 
+    s3=models.IntegerField(default=0) 
+    s4=models.IntegerField(default=0) 
+    s5=models.IntegerField(default=0) 
+    s6=models.IntegerField(default=0) 
+    s7=models.IntegerField(default=0) 
+    s8=models.IntegerField(default=0) 
+    s9=models.IntegerField(default=0) 
+    s10=models.IntegerField(default=0,blank=True) 
+    s11=models.IntegerField(default=0,blank=True) 
+    s12=models.IntegerField(default=0,blank=True)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
 
     @staticmethod
-    def import_csv(filename):      
+    def import_csv(filename,sem, unit):      
+        tmp_data=pd.read_csv(filename,sep=',')    
+        row_iter = tmp_data.iterrows()    
+        for i,row in row_iter:
+            s = Students.objects.get(pin=row['pin'])
+            a = UnitMarks(
+                student=s,
+                s1 =row['s1'],
+                s2=row['s2'], 
+                s3=row['s3'],
+                s4=row['s4'],
+                s5=row['s5'],
+                s6=row['s6'],
+                s7=0,
+                s8=0,
+                s9=0, 
+                s10=0,
+                s11=0,
+                s12=0,
+                sem=sem,
+                unit = unit,
+                
+            )
+            a.save()
+    def subject_codes(self):
+        if self.sem == "1YEAR":
+            return [101,102,103,104,105,106,107,108,109,110,111]
+        elif self.sem == "3SEM":
+            return [301,302,303,304,305,306,307,308,309]
+        elif self.sem == "4SEM":
+            return [401,402,403,404,405,406,407,408,409]
+        elif self.sem == "5SEM":
+            return [501,502,503,504,505,506,507,508,509]
+        else:
+            return []
+
+
+
+class Unit1marks(models.Model):
+    #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
+    sem = models.CharField(max_length=20)
+    s1=models.IntegerField(default=0) 
+    s2=models.IntegerField(default=0) 
+    s3=models.IntegerField(default=0) 
+    s4=models.IntegerField(default=0) 
+    s5=models.IntegerField(default=0) 
+    s6=models.IntegerField(default=0) 
+    s7=models.IntegerField(default=0) 
+    s8=models.IntegerField(default=0) 
+    s9=models.IntegerField(default=0) 
+    s10=models.IntegerField(default=0) 
+    s11=models.IntegerField(default=0) 
+    s12=models.IntegerField(default=0)
+    student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
+
+    @staticmethod
+    def import_csv(filename,sem):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
@@ -346,7 +405,7 @@ class Unit1marks(models.Model):
                 s10=0,
                 s11=0,
                 s12=0,
-                sem="3SEM"
+                sem=sem
                 
             )
             a.save()
@@ -368,22 +427,22 @@ class Unit1marks(models.Model):
 
 class Unit2marks(models.Model):
     #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
-    s1=models.IntegerField() 
-    s2=models.IntegerField() 
-    s3=models.IntegerField() 
-    s4=models.IntegerField() 
-    s5=models.IntegerField() 
-    s6=models.IntegerField() 
-    s7=models.IntegerField() 
-    s8=models.IntegerField() 
-    s9=models.IntegerField() 
-    s10=models.IntegerField() 
-    s11=models.IntegerField() 
-    s12=models.IntegerField()
+    s1=models.IntegerField(default=0) 
+    s2=models.IntegerField(default=0) 
+    s3=models.IntegerField(default=0) 
+    s4=models.IntegerField(default=0) 
+    s5=models.IntegerField(default=0) 
+    s6=models.IntegerField(default=0) 
+    s7=models.IntegerField(default=0) 
+    s8=models.IntegerField(default=0) 
+    s9=models.IntegerField(default=0) 
+    s10=models.IntegerField(default=0) 
+    s11=models.IntegerField(default=0) 
+    s12=models.IntegerField(default=0)
     sem = models.CharField(max_length=10)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
     @staticmethod
-    def import_csv(filename):      
+    def import_csv(filename,sem):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
@@ -402,7 +461,7 @@ class Unit2marks(models.Model):
                 s10=0,
                 s11=0,
                 s12=0,
-                sem = '4SEM', 
+                sem = sem, 
                 
             )
             a.save()
@@ -421,23 +480,23 @@ class Unit2marks(models.Model):
 
 class Unit3marks(models.Model):
     #studentclass = models.ForeignKey(StudentClass, on_delete= models.CASCADE,default='SOME STRING')
-    s1=models.IntegerField() 
-    s2=models.IntegerField() 
-    s3=models.IntegerField() 
-    s4=models.IntegerField() 
-    s5=models.IntegerField() 
-    s6=models.IntegerField() 
-    s7=models.IntegerField() 
-    s8=models.IntegerField() 
-    s9=models.IntegerField() 
-    s10=models.IntegerField() 
-    s11=models.IntegerField() 
-    s12=models.IntegerField()
+    s1=models.IntegerField(default=0) 
+    s2=models.IntegerField(default=0) 
+    s3=models.IntegerField(default=0) 
+    s4=models.IntegerField(default=0) 
+    s5=models.IntegerField(default=0) 
+    s6=models.IntegerField(default=0) 
+    s7=models.IntegerField(default=0) 
+    s8=models.IntegerField(default=0) 
+    s9=models.IntegerField(default=0) 
+    s10=models.IntegerField(default=0) 
+    s11=models.IntegerField(default=0) 
+    s12=models.IntegerField(default=0)
     sem = models.CharField(max_length=10)
     student = models.ForeignKey(Students, to_field="pin", on_delete=models.CASCADE,default='SOME STRING') 
         
     @staticmethod
-    def import_csv(filename):      
+    def import_csv(filename,sem):      
         tmp_data=pd.read_csv(filename,sep=',')    
         row_iter = tmp_data.iterrows()    
         for i,row in row_iter:
@@ -456,7 +515,7 @@ class Unit3marks(models.Model):
                 s10=0,
                 s11=0,
                 s12=0,
-                studentclass_id = '4SEM', 
+                studentclass_id = sem, 
                 
             )
             a.save() 

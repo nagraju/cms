@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import student
 from .views import attendance
 from .views import marks
-from .views import Unit1marks,Unit2marks,Unit3marks, totalattendance
+from .views import Unit1marks,Unitmarks, Unit2marks,Unit3marks, totalattendance
 
 urlpatterns = [
 path("i/", student.index, name="student_index"),
@@ -31,35 +31,25 @@ path("t/", totalattendance.index, name="total_atten_index"),
 
 path("m/upload", marks.upload, name="marks_upload"),
 path("m/", marks.index, name="marks_index"),
-path("a/<str:sem>",marks.index, name="m_index"),
-path("a/<str:pin>/edit", marks.edit, name="m_edit"),
-path("a/<str:sem>/bulkedit", marks.bulkedit, name="m_bulkedit"),
+path("m/<str:sem>",marks.index, name="m_index"),
+path("m/<str:pin>/edit", marks.edit, name="m_edit"),
+path("m/<str:sem>/bulkedit", marks.bulkedit, name="m_bulkedit"),
 path("<str:spin>/m", marks.show, name="m_show"),
 
 
+path("um/", Unitmarks.index, name="um_index"),
+path("um/upload", Unitmarks.upload, name="um_upload"),
+path("um/<str:spin>/edit", Unitmarks.edit, name="um_edit"),
+path("um/<str:spin>/bulkedit", Unitmarks.bulkedit, name="um_bulkedit"),
+path("um/<str:spin>", Unitmarks.show, name="um_show"),
 
 
 
-path("u1m/", Unit1marks.index, name="um1_index"),
-path("a/<str:sem>",Unit1marks.index, name="u1m_index"),
-path("a/<str:pin>/edit", Unit1marks.edit, name="u1m_edit"),
-path("a/<str:sem>/bulkedit", Unit1marks.bulkedit, name="u1m_bulkedit"),
-path("<str:spin>/um", Unit1marks.show, name="u1m_show"),
-path("u1m/upload", Unit1marks.upload, name="u1m_upload"),
-
-path("u2m/", Unit2marks.index, name="um2_index"),
-path("a/<str:sem>",Unit2marks.index, name="u2m_index"),
-path("a/<str:pin>/edit", Unit2marks.edit, name="u2m_edit"),
-path("a/<str:sem>/bulkedit", Unit2marks.bulkedit, name="u2m_bulkedit"),
-path("<str:spin>/um", Unit2marks.show, name="u2m_show"),
-path("u2m/upload", Unit2marks.upload, name="u2m_upload"),
-
-path("u3m/", Unit3marks.index, name="um3_index"),
-path("a/<str:sem>",Unit3marks.index, name="um3_index"),
-path("a/<str:pin>/edit", Unit3marks.edit, name="um3_edit"),
-path("a/<str:sem>/bulkedit", Unit3marks.bulkedit, name="um3_bulkedit"),
-path("<str:spin>/um", Unit3marks.show, name="um3_show"),
-path("u3m/upload", Unit3marks.upload, name="um3_upload"),
-
+path("u/", Unit1marks.index, name="um1_index"),
+path("u/<str:sem>",Unit1marks.index, name="u1m_index"),
+path("u/<str:spin>/edit", Unit1marks.edit, name="u1m_edit"),
+path("u/<str:spin>/bulkedit", Unit1marks.bulkedit, name="u1m_bulkedit"),
+path("u/<str:spin>", Unit1marks.show, name="u1m_show"),
+path("u/upload", Unit1marks.upload, name="u1m_upload"),
 
 ]

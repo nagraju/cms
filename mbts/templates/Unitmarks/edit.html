@@ -6,13 +6,6 @@ SEM: {{sem}}<br/>
 UNIT: {{unit}}
 <form method="POST">
 {% csrf_token %}
-<ul>
-{% for field in fs %}
-<div class="form-group">
-<li>{{ field.label_tag }} --{{ field.errors }}</li>
-</div>
-{% endfor %}
-</ul>
 
 <table>
 <tr>
@@ -36,7 +29,7 @@ UNIT: {{unit}}
     <td>{{fs.s11}}</td>
 {% endif %}
 
-</tr>
+
 </table>
 
 

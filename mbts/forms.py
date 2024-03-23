@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Students, Attendance, StudentClass
-from .models import Students, Unit1marks, StudentClass,Unit2marks,Unit3marks
+from .models import Students, Unit1marks, StudentClass,Unit2marks,Unit3marks, UnitMarks
 
 
  
@@ -51,7 +51,7 @@ class ClassUnit1marks(ModelForm):
 class Unit1marksForm(ModelForm):
     class Meta:
         model = Unit1marks
-        fields = ("s1","s2")
+        fields = ("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11")
 
 class ClassUnit2marks(ModelForm):
     Unit2marks= forms.ModelChoiceField(Unit2marks.objects.all())
@@ -59,10 +59,16 @@ class ClassUnit2marks(ModelForm):
         model = StudentClass
         fields = ("sem", "Unit2marks")
 
+
+class UnitmarksForm(ModelForm):
+    class Meta:
+        model = UnitMarks
+        fields = ("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11")
+
 class Unit2marksForm(ModelForm):
     class Meta:
         model = Unit2marks
-        fields = ("s1","s2")
+        fields = ("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11")
 
 class ClassUnit3marks(ModelForm):
     Unit3marks= forms.ModelChoiceField(Unit3marks.objects.all())
@@ -73,19 +79,15 @@ class ClassUnit3marks(ModelForm):
 class Unit3marksForm(ModelForm):
     class Meta:
         model = Unit3marks
-        fields = ("s1","s2")        
+        fields = ("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11")        
 
 
 
-
-
-        
-    
 
 class SearchForm(ModelForm):
     class Meta:
         model = StudentClass
-        #SEMS = (("1YESR","1ST YEAR"),("3SEM","3 SEM"),("4SEM","4 SEM"),("5SEM","5 SEM"),("6SEM", "6 SEM"))
+        #SEMS = (("1YEAR","1ST YEAR"),("3SEM","3 SEM"),("4SEM","4 SEM"),("5SEM","5 SEM"),("6SEM", "6 SEM"))
         fields = ['sem',]
         widgets = {
             'sem': forms.Select(choices=StudentClass.SEMS, attrs={'class': 'form-control'}),
@@ -97,7 +99,7 @@ class SemSearchForm(forms.Form):
     
 
 class UnitSearchForm(forms.Form):   
-    SEMS = (("1YESR","1st YEAR"),("3SEM","3rd SEM"),("4SEM","4th SEM"),("5SEM","5th SEM")) 
+    SEMS = (("1YEAR","1st YEAR"),("3SEM","3rd SEM"),("4SEM","4th SEM"),("5SEM","5th SEM")) 
     UNITS = (("UNIT1","UNIT 1"),('UNIT2','UNIT 2'),('UNIT3', 'UNIT 3'))
     sem = forms.ChoiceField(required=False, choices= SEMS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))
     unit = forms.ChoiceField(required=False, choices= UNITS, widget=forms.Select( attrs={'class': 'btn btn-primary btn-neutral'}))

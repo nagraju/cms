@@ -2,9 +2,17 @@
 
 
 {% block content %}
-{% if um %} 
 
-<table class="table">
+<form method="get">
+    {{form}}
+    <input class="btn btn-primary btn-neutral" type="submit" />    
+</form>
+
+<h1>{{sem}} {{unit}} MARKS</h1>
+    {% if um %}
+    
+    
+    <table class="table">
        
     {% for s in um %}
     {% if forloop.counter  == 1 %}
@@ -17,8 +25,7 @@
     </thead>
     {% endif %}
     <tr>
-        <td>{{s.student_id}}</td>       
-        <td>{{s.sem}}</td>    
+        <td>{{s.student_id}}</td>        
         <td>{{s.s1}}</td>
         <td>{{s.s2}}</td>
         <td>{{s.s3}}</td>
@@ -32,18 +39,16 @@
         <td>{{s.s10}}</td>
         <td>{{s.s11}}</td>
     {% endif %}
+        <td><a href="{% url 'um_show' s.student_id %}?sem={{sem}}&unit={{unit}}">Show</a></td>
+        <td><a href="{% url 'um_edit' s.student_id %}?sem={{sem}}&unit={{unit}}">Edit</a></td>
+
+        
+    </tr>
     {% endfor %}
-</table>
-    {% endif %}
-<a href="{% url 'um1_index' %}">Unit1marks</a>
+    </table>
+
+{% else %}
+    <p>No unit marks are available.</p>
+{% endif %}
 
 {% endblock %}
-
-
-
-
-
-
-
-    
-    
